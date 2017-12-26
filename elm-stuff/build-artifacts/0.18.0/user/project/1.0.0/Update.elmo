@@ -1,0 +1,34 @@
+var _user$project$Update$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'AddPhoneNumber':
+				var user = _user$project$Models$User(model.inputName);
+				var phoneNumber = A2(_user$project$Models$PhoneNumber, model.inputNumber, user);
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							phoneNumbers: {ctor: '::', _0: phoneNumber, _1: model.phoneNumbers}
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'InputName':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{inputName: _p0._0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{inputNumber: _p0._0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+		}
+	});

@@ -1,0 +1,547 @@
+var _user$project$View$toLi = function (phone) {
+	return A2(
+		_elm_lang$html$Html$li,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					phone.number,
+					A2(_elm_lang$core$Basics_ops['++'], ' ', phone.user.name))),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$View$toHtmlList = function (phoneNumbers) {
+	return A2(
+		_elm_lang$html$Html$ul,
+		{ctor: '[]'},
+		A2(_elm_lang$core$List$map, _user$project$View$toLi, phoneNumbers));
+};
+var _user$project$View$createUser = function (model) {
+	return {name: model.inputName};
+};
+var _user$project$View$createPhoneNumber = function (model) {
+	return {
+		number: model.inputNumber,
+		user: _user$project$View$createUser(model)
+	};
+};
+var _user$project$View$saveNumber = function (model) {
+	return _user$project$Messages$AddPhoneNumber(
+		_user$project$View$createPhoneNumber(model));
+};
+var _user$project$View$sansSerif = {
+	ctor: '::',
+	_0: _mdgriffith$style_elements$Style_Font$font('helvetica'),
+	_1: {
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Style_Font$font('arial'),
+		_1: {
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Style_Font$font('sans-serif'),
+			_1: {ctor: '[]'}
+		}
+	}
+};
+var _user$project$View$TableHeader = {ctor: 'TableHeader'};
+var _user$project$View$Tr = {ctor: 'Tr'};
+var _user$project$View$viewName = function (phone) {
+	return A3(
+		_mdgriffith$style_elements$Element$el,
+		_user$project$View$Tr,
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+			_1: {ctor: '[]'}
+		},
+		_mdgriffith$style_elements$Element$text(phone.user.name));
+};
+var _user$project$View$viewNames = function (model) {
+	return A2(_elm_lang$core$List$map, _user$project$View$viewName, model.phoneNumbers);
+};
+var _user$project$View$viewNumber = function (phone) {
+	return A3(
+		_mdgriffith$style_elements$Element$el,
+		_user$project$View$Tr,
+		{
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+			_1: {ctor: '[]'}
+		},
+		_mdgriffith$style_elements$Element$text(phone.number));
+};
+var _user$project$View$viewNumbers = function (model) {
+	return A2(_elm_lang$core$List$map, _user$project$View$viewNumber, model.phoneNumbers);
+};
+var _user$project$View$Table = {ctor: 'Table'};
+var _user$project$View$Submit = {ctor: 'Submit'};
+var _user$project$View$FormInput = {ctor: 'FormInput'};
+var _user$project$View$FormLabel = {ctor: 'FormLabel'};
+var _user$project$View$Form = {ctor: 'Form'};
+var _user$project$View$Title = {ctor: 'Title'};
+var _user$project$View$Container = {ctor: 'Container'};
+var _user$project$View$Error = {ctor: 'Error'};
+var _user$project$View$None = {ctor: 'None'};
+var _user$project$View$stylesheet = _mdgriffith$style_elements$Style$styleSheet(
+	{
+		ctor: '::',
+		_0: A2(
+			_mdgriffith$style_elements$Style$style,
+			_user$project$View$Container,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Style_Font$typeface(_user$project$View$sansSerif),
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_mdgriffith$style_elements$Style$style,
+				_user$project$View$Title,
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Style_Font$size(30),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$red),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Background$gradientDown(
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Background$step(_elm_lang$core$Color$blue),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Background$step(_elm_lang$core$Color$green),
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_mdgriffith$style_elements$Style$style,
+					_user$project$View$Form,
+					{ctor: '[]'}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_mdgriffith$style_elements$Style$style,
+						_user$project$View$FormLabel,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$gray),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Style_Border$roundBottomLeft(5),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Border$roundTopLeft(5),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Border$all(1),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$blue),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_mdgriffith$style_elements$Style$style,
+							_user$project$View$FormInput,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Style_Border$roundBottomRight(5),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Border$roundTopRight(5),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Border$solid,
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Border$all(1),
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$blue),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_mdgriffith$style_elements$Style$style,
+								_user$project$View$Submit,
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$green),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$white),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Border$all(1),
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Border$rounded(5),
+												_1: {
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Style_Font$bold,
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_mdgriffith$style_elements$Style$style,
+									_user$project$View$None,
+									{ctor: '[]'}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_mdgriffith$style_elements$Style$style,
+										_user$project$View$Error,
+										{
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Style_Color$text(_elm_lang$core$Color$red),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_mdgriffith$style_elements$Style$style,
+											_user$project$View$TableHeader,
+											{
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Style_Color$background(_elm_lang$core$Color$gray),
+												_1: {
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$blue),
+													_1: {
+														ctor: '::',
+														_0: _mdgriffith$style_elements$Style_Border$all(1),
+														_1: {ctor: '[]'}
+													}
+												}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_mdgriffith$style_elements$Style$style,
+												_user$project$View$Tr,
+												{
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Style_Border$bottom(1),
+													_1: {
+														ctor: '::',
+														_0: _mdgriffith$style_elements$Style_Color$border(_elm_lang$core$Color$blue),
+														_1: {ctor: '[]'}
+													}
+												}),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _user$project$View$view = function (model) {
+	return A2(
+		_mdgriffith$style_elements$Element$layout,
+		_user$project$View$stylesheet,
+		A3(
+			_mdgriffith$style_elements$Element$column,
+			_user$project$View$Container,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$spacing(20),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A3(
+					_mdgriffith$style_elements$Element$h1,
+					_user$project$View$Title,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$center,
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$padding(50),
+							_1: {ctor: '[]'}
+						}
+					},
+					_mdgriffith$style_elements$Element$text('Phone Numbers')),
+				_1: {
+					ctor: '::',
+					_0: A3(
+						_mdgriffith$style_elements$Element$row,
+						_user$project$View$Form,
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$center,
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$paddingLeft(400),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Attributes$paddingRight(400),
+									_1: {ctor: '[]'}
+								}
+							}
+						},
+						{
+							ctor: '::',
+							_0: A3(
+								_mdgriffith$style_elements$Element_Input$text,
+								_user$project$View$FormInput,
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+									_1: {ctor: '[]'}
+								},
+								{
+									onChange: _user$project$Messages$InputNumber,
+									value: model.inputNumber,
+									label: _mdgriffith$style_elements$Element_Input$placeholder(
+										{
+											text: 'Phone Number...',
+											label: _mdgriffith$style_elements$Element_Input$labelLeft(
+												A3(
+													_mdgriffith$style_elements$Element$el,
+													_user$project$View$FormLabel,
+													{
+														ctor: '::',
+														_0: _mdgriffith$style_elements$Element_Attributes$width(
+															_mdgriffith$style_elements$Element_Attributes$px(100)),
+														_1: {
+															ctor: '::',
+															_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+															_1: {ctor: '[]'}
+														}
+													},
+													_mdgriffith$style_elements$Element$text('Number')))
+										}),
+									options: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Input$errorBelow(
+											A3(
+												_mdgriffith$style_elements$Element$el,
+												_user$project$View$Error,
+												{
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Element_Attributes$hidden,
+													_1: {ctor: '[]'}
+												},
+												_mdgriffith$style_elements$Element$text('This is an Error!'))),
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A3(
+							_mdgriffith$style_elements$Element$row,
+							_user$project$View$Form,
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$center,
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Attributes$paddingLeft(400),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Attributes$paddingRight(400),
+										_1: {ctor: '[]'}
+									}
+								}
+							},
+							{
+								ctor: '::',
+								_0: A3(
+									_mdgriffith$style_elements$Element_Input$text,
+									_user$project$View$FormInput,
+									{
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+										_1: {ctor: '[]'}
+									},
+									{
+										onChange: _user$project$Messages$InputName,
+										value: model.inputName,
+										label: _mdgriffith$style_elements$Element_Input$placeholder(
+											{
+												text: 'Name...',
+												label: _mdgriffith$style_elements$Element_Input$labelLeft(
+													A3(
+														_mdgriffith$style_elements$Element$el,
+														_user$project$View$FormLabel,
+														{
+															ctor: '::',
+															_0: _mdgriffith$style_elements$Element_Attributes$width(
+																_mdgriffith$style_elements$Element_Attributes$px(100)),
+															_1: {
+																ctor: '::',
+																_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+																_1: {ctor: '[]'}
+															}
+														},
+														_mdgriffith$style_elements$Element$text('Name')))
+											}),
+										options: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Element_Input$errorBelow(
+												A3(
+													_mdgriffith$style_elements$Element$el,
+													_user$project$View$Error,
+													{
+														ctor: '::',
+														_0: _mdgriffith$style_elements$Element_Attributes$hidden,
+														_1: {ctor: '[]'}
+													},
+													_mdgriffith$style_elements$Element$text('This is an Error!'))),
+											_1: {ctor: '[]'}
+										}
+									}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A3(
+								_mdgriffith$style_elements$Element$row,
+								_user$project$View$Form,
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Attributes$center,
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Attributes$paddingLeft(400),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Element_Attributes$paddingRight(400),
+											_1: {ctor: '[]'}
+										}
+									}
+								},
+								{
+									ctor: '::',
+									_0: A3(
+										_mdgriffith$style_elements$Element$button,
+										_user$project$View$Submit,
+										{
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Element_Attributes$width(
+												_mdgriffith$style_elements$Element_Attributes$px(100)),
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Element_Attributes$height(
+													_mdgriffith$style_elements$Element_Attributes$px(50)),
+												_1: {
+													ctor: '::',
+													_0: _mdgriffith$style_elements$Element_Events$onClick(
+														_user$project$View$saveNumber(model)),
+													_1: {ctor: '[]'}
+												}
+											}
+										},
+										_mdgriffith$style_elements$Element$text('ADD')),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A3(
+									_mdgriffith$style_elements$Element$row,
+									_user$project$View$None,
+									{
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Attributes$center,
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Element_Attributes$paddingLeft(400),
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Element_Attributes$paddingRight(400),
+												_1: {ctor: '[]'}
+											}
+										}
+									},
+									{
+										ctor: '::',
+										_0: A3(
+											_mdgriffith$style_elements$Element$table,
+											_user$project$View$Table,
+											{
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: {
+													ctor: '::',
+													_0: A3(
+														_mdgriffith$style_elements$Element$el,
+														_user$project$View$TableHeader,
+														{
+															ctor: '::',
+															_0: _mdgriffith$style_elements$Element_Attributes$center,
+															_1: {
+																ctor: '::',
+																_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+																_1: {ctor: '[]'}
+															}
+														},
+														_mdgriffith$style_elements$Element$text('Numbers')),
+													_1: _user$project$View$viewNumbers(model)
+												},
+												_1: {
+													ctor: '::',
+													_0: {
+														ctor: '::',
+														_0: A3(
+															_mdgriffith$style_elements$Element$el,
+															_user$project$View$TableHeader,
+															{
+																ctor: '::',
+																_0: _mdgriffith$style_elements$Element_Attributes$center,
+																_1: {
+																	ctor: '::',
+																	_0: _mdgriffith$style_elements$Element_Attributes$padding(10),
+																	_1: {ctor: '[]'}
+																}
+															},
+															_mdgriffith$style_elements$Element$text('Names')),
+														_1: _user$project$View$viewNames(model)
+													},
+													_1: {ctor: '[]'}
+												}
+											}),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}));
+};

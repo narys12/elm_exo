@@ -1,0 +1,591 @@
+var _mdgriffith$style_elements$Element_Internal_Modify$getTextList = function (el) {
+	getTextList:
+	while (true) {
+		var _p0 = el;
+		switch (_p0.ctor) {
+			case 'Empty':
+				return {ctor: '[]'};
+			case 'Spacer':
+				return {ctor: '[]'};
+			case 'Raw':
+				return {ctor: '[]'};
+			case 'Layout':
+				var _p1 = _p0._0.children;
+				if (_p1.ctor === 'Normal') {
+					return A2(_elm_lang$core$List$concatMap, _mdgriffith$style_elements$Element_Internal_Modify$getTextList, _p1._0);
+				} else {
+					return A2(
+						_elm_lang$core$List$concatMap,
+						function (_p2) {
+							return _mdgriffith$style_elements$Element_Internal_Modify$getTextList(
+								_elm_lang$core$Tuple$second(_p2));
+						},
+						_p1._0);
+				}
+			case 'Element':
+				var _v2 = _p0._0.child;
+				el = _v2;
+				continue getTextList;
+			default:
+				return {
+					ctor: '::',
+					_0: _p0._1,
+					_1: {ctor: '[]'}
+				};
+		}
+	}
+};
+var _mdgriffith$style_elements$Element_Internal_Modify$getText = function (el) {
+	getText:
+	while (true) {
+		var _p3 = el;
+		switch (_p3.ctor) {
+			case 'Empty':
+				return '';
+			case 'Spacer':
+				return '';
+			case 'Raw':
+				return '';
+			case 'Layout':
+				var _p4 = _p3._0.children;
+				if (_p4.ctor === 'Normal') {
+					return A2(
+						_elm_lang$core$String$join,
+						'-',
+						A2(_elm_lang$core$List$map, _mdgriffith$style_elements$Element_Internal_Modify$getText, _p4._0));
+				} else {
+					return A2(
+						_elm_lang$core$String$join,
+						'-',
+						A2(
+							_elm_lang$core$List$map,
+							function (_p5) {
+								return _mdgriffith$style_elements$Element_Internal_Modify$getText(
+									_elm_lang$core$Tuple$second(_p5));
+							},
+							_p4._0));
+				}
+			case 'Element':
+				var _v5 = _p3._0.child;
+				el = _v5;
+				continue getText;
+			default:
+				return _p3._1;
+		}
+	}
+};
+var _mdgriffith$style_elements$Element_Internal_Modify$getChild = function (el) {
+	var _p6 = el;
+	switch (_p6.ctor) {
+		case 'Empty':
+			return _mdgriffith$style_elements$Element_Internal_Model$Empty;
+		case 'Spacer':
+			return _mdgriffith$style_elements$Element_Internal_Model$Spacer(_p6._0);
+		case 'Raw':
+			return _mdgriffith$style_elements$Element_Internal_Model$Raw(_p6._0);
+		case 'Layout':
+			return el;
+		case 'Element':
+			return _p6._0.child;
+		default:
+			return A2(_mdgriffith$style_elements$Element_Internal_Model$Text, _p6._0, _p6._1);
+	}
+};
+var _mdgriffith$style_elements$Element_Internal_Modify$removeContent = function (el) {
+	var _p7 = el;
+	switch (_p7.ctor) {
+		case 'Empty':
+			return _mdgriffith$style_elements$Element_Internal_Model$Empty;
+		case 'Spacer':
+			return _mdgriffith$style_elements$Element_Internal_Model$Spacer(_p7._0);
+		case 'Raw':
+			return _mdgriffith$style_elements$Element_Internal_Model$Raw(_p7._0);
+		case 'Layout':
+			return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+				_elm_lang$core$Native_Utils.update(
+					_p7._0,
+					{
+						children: _mdgriffith$style_elements$Element_Internal_Model$Normal(
+							{ctor: '[]'}),
+						absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+					}));
+		case 'Element':
+			return _mdgriffith$style_elements$Element_Internal_Model$Element(
+				_elm_lang$core$Native_Utils.update(
+					_p7._0,
+					{child: _mdgriffith$style_elements$Element_Internal_Model$Empty, absolutelyPositioned: _elm_lang$core$Maybe$Nothing}));
+		default:
+			return _mdgriffith$style_elements$Element_Internal_Model$Empty;
+	}
+};
+var _mdgriffith$style_elements$Element_Internal_Modify$removeStyle = function (el) {
+	var _p8 = el;
+	switch (_p8.ctor) {
+		case 'Empty':
+			return _mdgriffith$style_elements$Element_Internal_Model$Empty;
+		case 'Spacer':
+			return _mdgriffith$style_elements$Element_Internal_Model$Spacer(_p8._0);
+		case 'Raw':
+			return _mdgriffith$style_elements$Element_Internal_Model$Raw(_p8._0);
+		case 'Layout':
+			return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+				_elm_lang$core$Native_Utils.update(
+					_p8._0,
+					{style: _elm_lang$core$Maybe$Nothing}));
+		case 'Element':
+			return _mdgriffith$style_elements$Element_Internal_Model$Element(
+				_elm_lang$core$Native_Utils.update(
+					_p8._0,
+					{style: _elm_lang$core$Maybe$Nothing}));
+		default:
+			return A2(_mdgriffith$style_elements$Element_Internal_Model$Text, _p8._0, _p8._1);
+	}
+};
+var _mdgriffith$style_elements$Element_Internal_Modify$getStyle = function (el) {
+	var _p9 = el;
+	switch (_p9.ctor) {
+		case 'Empty':
+			return _elm_lang$core$Maybe$Nothing;
+		case 'Raw':
+			return _elm_lang$core$Maybe$Nothing;
+		case 'Spacer':
+			return _elm_lang$core$Maybe$Nothing;
+		case 'Layout':
+			return _p9._0.style;
+		case 'Element':
+			return _p9._0.style;
+		default:
+			return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _mdgriffith$style_elements$Element_Internal_Modify$getAttrs = function (el) {
+	var _p10 = el;
+	switch (_p10.ctor) {
+		case 'Empty':
+			return {ctor: '[]'};
+		case 'Spacer':
+			return {ctor: '[]'};
+		case 'Raw':
+			return {ctor: '[]'};
+		case 'Layout':
+			return _p10._0.attrs;
+		case 'Element':
+			return _p10._0.attrs;
+		default:
+			return {ctor: '[]'};
+	}
+};
+var _mdgriffith$style_elements$Element_Internal_Modify$addChild = F2(
+	function (parent, el) {
+		var _p11 = parent;
+		switch (_p11.ctor) {
+			case 'Empty':
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					{
+						node: 'div',
+						style: _elm_lang$core$Maybe$Nothing,
+						attrs: {ctor: '[]'},
+						child: _mdgriffith$style_elements$Element_Internal_Model$Empty,
+						absolutelyPositioned: _elm_lang$core$Maybe$Just(
+							{
+								ctor: '::',
+								_0: el,
+								_1: {ctor: '[]'}
+							})
+					});
+			case 'Spacer':
+				return _mdgriffith$style_elements$Element_Internal_Model$Spacer(_p11._0);
+			case 'Raw':
+				return _mdgriffith$style_elements$Element_Internal_Model$Raw(_p11._0);
+			case 'Layout':
+				var _p13 = _p11._0;
+				var _p12 = _p11._0.absolutelyPositioned;
+				if (_p12.ctor === 'Nothing') {
+					return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+						_elm_lang$core$Native_Utils.update(
+							_p13,
+							{
+								absolutelyPositioned: _elm_lang$core$Maybe$Just(
+									{
+										ctor: '::',
+										_0: el,
+										_1: {ctor: '[]'}
+									})
+							}));
+				} else {
+					return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+						_elm_lang$core$Native_Utils.update(
+							_p13,
+							{
+								absolutelyPositioned: _elm_lang$core$Maybe$Just(
+									{ctor: '::', _0: el, _1: _p12._0})
+							}));
+				}
+			case 'Element':
+				var _p15 = _p11._0;
+				var _p14 = _p11._0.absolutelyPositioned;
+				if (_p14.ctor === 'Nothing') {
+					return _mdgriffith$style_elements$Element_Internal_Model$Element(
+						_elm_lang$core$Native_Utils.update(
+							_p15,
+							{
+								absolutelyPositioned: _elm_lang$core$Maybe$Just(
+									{
+										ctor: '::',
+										_0: el,
+										_1: {ctor: '[]'}
+									})
+							}));
+				} else {
+					return _mdgriffith$style_elements$Element_Internal_Model$Element(
+						_elm_lang$core$Native_Utils.update(
+							_p15,
+							{
+								absolutelyPositioned: _elm_lang$core$Maybe$Just(
+									{ctor: '::', _0: el, _1: _p14._0})
+							}));
+				}
+			default:
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					{
+						node: 'div',
+						style: _elm_lang$core$Maybe$Nothing,
+						attrs: {ctor: '[]'},
+						child: A2(_mdgriffith$style_elements$Element_Internal_Model$Text, _p11._0, _p11._1),
+						absolutelyPositioned: _elm_lang$core$Maybe$Just(
+							{
+								ctor: '::',
+								_0: el,
+								_1: {ctor: '[]'}
+							})
+					});
+		}
+	});
+var _mdgriffith$style_elements$Element_Internal_Modify$removeAllAttrs = function (el) {
+	var _p16 = el;
+	switch (_p16.ctor) {
+		case 'Empty':
+			return _mdgriffith$style_elements$Element_Internal_Model$Empty;
+		case 'Spacer':
+			return _mdgriffith$style_elements$Element_Internal_Model$Spacer(_p16._0);
+		case 'Raw':
+			return _mdgriffith$style_elements$Element_Internal_Model$Raw(_p16._0);
+		case 'Layout':
+			return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+				_elm_lang$core$Native_Utils.update(
+					_p16._0,
+					{
+						attrs: {ctor: '[]'}
+					}));
+		case 'Element':
+			return _mdgriffith$style_elements$Element_Internal_Model$Element(
+				_elm_lang$core$Native_Utils.update(
+					_p16._0,
+					{
+						attrs: {ctor: '[]'}
+					}));
+		default:
+			return A2(_mdgriffith$style_elements$Element_Internal_Model$Text, _p16._0, _p16._1);
+	}
+};
+var _mdgriffith$style_elements$Element_Internal_Modify$removeAttrs = F2(
+	function (props, el) {
+		var match = function (p) {
+			return !A2(_elm_lang$core$List$member, p, props);
+		};
+		var _p17 = el;
+		switch (_p17.ctor) {
+			case 'Empty':
+				return _mdgriffith$style_elements$Element_Internal_Model$Empty;
+			case 'Raw':
+				return _mdgriffith$style_elements$Element_Internal_Model$Raw(_p17._0);
+			case 'Spacer':
+				return _mdgriffith$style_elements$Element_Internal_Model$Spacer(_p17._0);
+			case 'Layout':
+				var _p18 = _p17._0;
+				return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+					_elm_lang$core$Native_Utils.update(
+						_p18,
+						{
+							attrs: A2(_elm_lang$core$List$filter, match, _p18.attrs)
+						}));
+			case 'Element':
+				var _p19 = _p17._0;
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					_elm_lang$core$Native_Utils.update(
+						_p19,
+						{
+							attrs: A2(_elm_lang$core$List$filter, match, _p19.attrs)
+						}));
+			default:
+				return A2(_mdgriffith$style_elements$Element_Internal_Model$Text, _p17._0, _p17._1);
+		}
+	});
+var _mdgriffith$style_elements$Element_Internal_Modify$setAttrs = F2(
+	function (props, el) {
+		var _p20 = el;
+		switch (_p20.ctor) {
+			case 'Empty':
+				return _mdgriffith$style_elements$Element_Internal_Model$Empty;
+			case 'Spacer':
+				return _mdgriffith$style_elements$Element_Internal_Model$Spacer(_p20._0);
+			case 'Raw':
+				return _mdgriffith$style_elements$Element_Internal_Model$Raw(_p20._0);
+			case 'Layout':
+				return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+					_elm_lang$core$Native_Utils.update(
+						_p20._0,
+						{attrs: props}));
+			case 'Element':
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					_elm_lang$core$Native_Utils.update(
+						_p20._0,
+						{attrs: props}));
+			default:
+				return A2(_mdgriffith$style_elements$Element_Internal_Model$Text, _p20._0, _p20._1);
+		}
+	});
+var _mdgriffith$style_elements$Element_Internal_Modify$addAttrList = F2(
+	function (props, el) {
+		var _p21 = el;
+		switch (_p21.ctor) {
+			case 'Empty':
+				return _mdgriffith$style_elements$Element_Internal_Model$Empty;
+			case 'Spacer':
+				return _mdgriffith$style_elements$Element_Internal_Model$Spacer(_p21._0);
+			case 'Raw':
+				return _mdgriffith$style_elements$Element_Internal_Model$Raw(_p21._0);
+			case 'Layout':
+				var _p22 = _p21._0;
+				return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+					_elm_lang$core$Native_Utils.update(
+						_p22,
+						{
+							attrs: A2(_elm_lang$core$Basics_ops['++'], props, _p22.attrs)
+						}));
+			case 'Element':
+				var _p23 = _p21._0;
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					_elm_lang$core$Native_Utils.update(
+						_p23,
+						{
+							attrs: A2(_elm_lang$core$Basics_ops['++'], props, _p23.attrs)
+						}));
+			default:
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					{
+						node: 'div',
+						style: _elm_lang$core$Maybe$Nothing,
+						attrs: props,
+						child: A2(_mdgriffith$style_elements$Element_Internal_Model$Text, _p21._0, _p21._1),
+						absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+					});
+		}
+	});
+var _mdgriffith$style_elements$Element_Internal_Modify$addAttrPriority = F2(
+	function (prop, el) {
+		var _p24 = el;
+		switch (_p24.ctor) {
+			case 'Empty':
+				return _mdgriffith$style_elements$Element_Internal_Model$Empty;
+			case 'Raw':
+				return _mdgriffith$style_elements$Element_Internal_Model$Raw(_p24._0);
+			case 'Spacer':
+				return _mdgriffith$style_elements$Element_Internal_Model$Spacer(_p24._0);
+			case 'Layout':
+				var _p25 = _p24._0;
+				return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+					_elm_lang$core$Native_Utils.update(
+						_p25,
+						{
+							attrs: A2(
+								_elm_lang$core$Basics_ops['++'],
+								_p25.attrs,
+								{
+									ctor: '::',
+									_0: prop,
+									_1: {ctor: '[]'}
+								})
+						}));
+			case 'Element':
+				var _p26 = _p24._0;
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					_elm_lang$core$Native_Utils.update(
+						_p26,
+						{
+							attrs: A2(
+								_elm_lang$core$Basics_ops['++'],
+								_p26.attrs,
+								{
+									ctor: '::',
+									_0: prop,
+									_1: {ctor: '[]'}
+								})
+						}));
+			default:
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					{
+						node: 'div',
+						style: _elm_lang$core$Maybe$Nothing,
+						attrs: {
+							ctor: '::',
+							_0: prop,
+							_1: {ctor: '[]'}
+						},
+						child: A2(_mdgriffith$style_elements$Element_Internal_Model$Text, _p24._0, _p24._1),
+						absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+					});
+		}
+	});
+var _mdgriffith$style_elements$Element_Internal_Modify$addAttr = F2(
+	function (prop, el) {
+		var _p27 = el;
+		switch (_p27.ctor) {
+			case 'Empty':
+				return _mdgriffith$style_elements$Element_Internal_Model$Empty;
+			case 'Raw':
+				return _mdgriffith$style_elements$Element_Internal_Model$Raw(_p27._0);
+			case 'Spacer':
+				return _mdgriffith$style_elements$Element_Internal_Model$Spacer(_p27._0);
+			case 'Layout':
+				var _p28 = _p27._0;
+				return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+					_elm_lang$core$Native_Utils.update(
+						_p28,
+						{
+							attrs: {ctor: '::', _0: prop, _1: _p28.attrs}
+						}));
+			case 'Element':
+				var _p29 = _p27._0;
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					_elm_lang$core$Native_Utils.update(
+						_p29,
+						{
+							attrs: {ctor: '::', _0: prop, _1: _p29.attrs}
+						}));
+			default:
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					{
+						node: 'div',
+						style: _elm_lang$core$Maybe$Nothing,
+						attrs: {
+							ctor: '::',
+							_0: prop,
+							_1: {ctor: '[]'}
+						},
+						child: A2(_mdgriffith$style_elements$Element_Internal_Model$Text, _p27._0, _p27._1),
+						absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+					});
+		}
+	});
+var _mdgriffith$style_elements$Element_Internal_Modify$addAttrToNonText = F2(
+	function (prop, el) {
+		var _p30 = el;
+		switch (_p30.ctor) {
+			case 'Empty':
+				return _mdgriffith$style_elements$Element_Internal_Model$Empty;
+			case 'Raw':
+				return _mdgriffith$style_elements$Element_Internal_Model$Raw(_p30._0);
+			case 'Spacer':
+				return _mdgriffith$style_elements$Element_Internal_Model$Spacer(_p30._0);
+			case 'Layout':
+				var _p31 = _p30._0;
+				return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+					_elm_lang$core$Native_Utils.update(
+						_p31,
+						{
+							attrs: {ctor: '::', _0: prop, _1: _p31.attrs}
+						}));
+			case 'Element':
+				var _p32 = _p30._0;
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					_elm_lang$core$Native_Utils.update(
+						_p32,
+						{
+							attrs: {ctor: '::', _0: prop, _1: _p32.attrs}
+						}));
+			default:
+				return A2(_mdgriffith$style_elements$Element_Internal_Model$Text, _p30._0, _p30._1);
+		}
+	});
+var _mdgriffith$style_elements$Element_Internal_Modify$makeInline = function (el) {
+	var _p33 = el;
+	switch (_p33.ctor) {
+		case 'Empty':
+			return _mdgriffith$style_elements$Element_Internal_Model$Empty;
+		case 'Raw':
+			return _mdgriffith$style_elements$Element_Internal_Model$Raw(_p33._0);
+		case 'Spacer':
+			return _mdgriffith$style_elements$Element_Internal_Model$Spacer(_p33._0);
+		case 'Layout':
+			var _p34 = _p33._0;
+			return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+				_elm_lang$core$Native_Utils.update(
+					_p34,
+					{
+						attrs: {ctor: '::', _0: _mdgriffith$style_elements$Element_Internal_Model$Inline, _1: _p34.attrs}
+					}));
+		case 'Element':
+			var _p35 = _p33._0;
+			return _mdgriffith$style_elements$Element_Internal_Model$Element(
+				_elm_lang$core$Native_Utils.update(
+					_p35,
+					{
+						attrs: {ctor: '::', _0: _mdgriffith$style_elements$Element_Internal_Model$Inline, _1: _p35.attrs},
+						child: _mdgriffith$style_elements$Element_Internal_Modify$makeInline(_p35.child)
+					}));
+		default:
+			return A2(
+				_mdgriffith$style_elements$Element_Internal_Model$Text,
+				_elm_lang$core$Native_Utils.update(
+					_p33._0,
+					{inline: true}),
+				_p33._1);
+	}
+};
+var _mdgriffith$style_elements$Element_Internal_Modify$setNode = F2(
+	function (node, el) {
+		var _p36 = el;
+		switch (_p36.ctor) {
+			case 'Empty':
+				return _mdgriffith$style_elements$Element_Internal_Model$Empty;
+			case 'Raw':
+				return _mdgriffith$style_elements$Element_Internal_Model$Raw(_p36._0);
+			case 'Spacer':
+				return _mdgriffith$style_elements$Element_Internal_Model$Spacer(_p36._0);
+			case 'Layout':
+				return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+					_elm_lang$core$Native_Utils.update(
+						_p36._0,
+						{node: node}));
+			case 'Element':
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					_elm_lang$core$Native_Utils.update(
+						_p36._0,
+						{node: node}));
+			default:
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					{
+						node: node,
+						style: _elm_lang$core$Maybe$Nothing,
+						attrs: {ctor: '[]'},
+						child: A2(_mdgriffith$style_elements$Element_Internal_Model$Text, _p36._0, _p36._1),
+						absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+					});
+		}
+	});
+var _mdgriffith$style_elements$Element_Internal_Modify$wrapHtml = function (el) {
+	var _p37 = el;
+	if (_p37.ctor === 'Raw') {
+		return _mdgriffith$style_elements$Element_Internal_Model$Element(
+			{
+				node: 'div',
+				style: _elm_lang$core$Maybe$Nothing,
+				attrs: {ctor: '[]'},
+				child: _mdgriffith$style_elements$Element_Internal_Model$Raw(_p37._0),
+				absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+			});
+	} else {
+		return _p37;
+	}
+};

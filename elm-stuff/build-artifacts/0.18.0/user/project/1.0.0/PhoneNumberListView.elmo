@@ -1,0 +1,20 @@
+var _user$project$PhoneNumberListView$toLi = function (phone) {
+	return A2(
+		_elm_lang$html$Html$li,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					phone.number,
+					A2(_elm_lang$core$Basics_ops['++'], ' ', phone.user.name))),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$PhoneNumberListView$toHtmlList = function (phoneNumbers) {
+	return A2(
+		_elm_lang$html$Html$ul,
+		{ctor: '[]'},
+		A2(_elm_lang$core$List$map, _user$project$PhoneNumberListView$toLi, phoneNumbers));
+};

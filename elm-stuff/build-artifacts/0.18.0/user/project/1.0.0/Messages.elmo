@@ -1,0 +1,9 @@
+var _user$project$Messages$InputName = function (a) {
+	return {ctor: 'InputName', _0: a};
+};
+var _user$project$Messages$InputNumber = function (a) {
+	return {ctor: 'InputNumber', _0: a};
+};
+var _user$project$Messages$AddPhoneNumber = function (a) {
+	return {ctor: 'AddPhoneNumber', _0: a};
+};

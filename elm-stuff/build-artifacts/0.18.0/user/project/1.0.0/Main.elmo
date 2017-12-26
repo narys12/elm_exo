@@ -1,0 +1,7 @@
+var _user$project$Main$User = function (a) {
+	return {name: a};
+};
+var _user$project$Main$PhoneNumber = F2(
+	function (a, b) {
+		return {number: a, user: b};
+	});

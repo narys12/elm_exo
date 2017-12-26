@@ -1,0 +1,3171 @@
+var _mdgriffith$style_elements$Element_Input$onFocusIn = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'focusin',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _mdgriffith$style_elements$Element_Input$onFocusOut = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'focusout',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _mdgriffith$style_elements$Element_Input$onKeyLookup = function (lookup) {
+	var decode = function (code) {
+		var _p0 = lookup(code);
+		if (_p0.ctor === 'Nothing') {
+			return _elm_lang$core$Json_Decode$fail('No key matched');
+		} else {
+			return _elm_lang$core$Json_Decode$succeed(_p0._0);
+		}
+	};
+	var isKey = A2(
+		_elm_lang$core$Json_Decode$andThen,
+		decode,
+		A2(_elm_lang$core$Json_Decode$field, 'which', _elm_lang$core$Json_Decode$int));
+	return A2(_mdgriffith$style_elements$Element_Events$on, 'keydown', isKey);
+};
+var _mdgriffith$style_elements$Element_Input$onKey = F2(
+	function (desiredCode, msg) {
+		var decode = function (code) {
+			return _elm_lang$core$Native_Utils.eq(code, desiredCode) ? _elm_lang$core$Json_Decode$succeed(msg) : _elm_lang$core$Json_Decode$fail('Not the enter key');
+		};
+		var isKey = A2(
+			_elm_lang$core$Json_Decode$andThen,
+			decode,
+			A2(_elm_lang$core$Json_Decode$field, 'which', _elm_lang$core$Json_Decode$int));
+		return A2(_mdgriffith$style_elements$Element_Events$on, 'keydown', isKey);
+	});
+var _mdgriffith$style_elements$Element_Input$space = 32;
+var _mdgriffith$style_elements$Element_Input$downArrow = 40;
+var _mdgriffith$style_elements$Element_Input$upArrow = 38;
+var _mdgriffith$style_elements$Element_Input$backspace = 46;
+var _mdgriffith$style_elements$Element_Input$delete = 8;
+var _mdgriffith$style_elements$Element_Input$tab = 9;
+var _mdgriffith$style_elements$Element_Input$enter = 13;
+var _mdgriffith$style_elements$Element_Input$onDown = function (msg) {
+	return A2(_mdgriffith$style_elements$Element_Input$onKey, 40, msg);
+};
+var _mdgriffith$style_elements$Element_Input$onUp = function (msg) {
+	return A2(_mdgriffith$style_elements$Element_Input$onKey, 38, msg);
+};
+var _mdgriffith$style_elements$Element_Input$onSpace = function (msg) {
+	return A2(_mdgriffith$style_elements$Element_Input$onKey, 32, msg);
+};
+var _mdgriffith$style_elements$Element_Input$onEnter = function (msg) {
+	return A2(_mdgriffith$style_elements$Element_Input$onKey, 13, msg);
+};
+var _mdgriffith$style_elements$Element_Input$defaultPadding = F2(
+	function (_p2, _p1) {
+		var _p3 = _p2;
+		var _p4 = _p1;
+		return {
+			ctor: '_Tuple4',
+			_0: A2(_elm_lang$core$Maybe$withDefault, _p4._0, _p3._0),
+			_1: A2(_elm_lang$core$Maybe$withDefault, _p4._1, _p3._1),
+			_2: A2(_elm_lang$core$Maybe$withDefault, _p4._2, _p3._2),
+			_3: A2(_elm_lang$core$Maybe$withDefault, _p4._3, _p3._3)
+		};
+	});
+var _mdgriffith$style_elements$Element_Input$selected = function (select) {
+	var _p5 = select;
+	if (_p5.ctor === 'Autocomplete') {
+		return _p5._0.selected;
+	} else {
+		return _p5._0.selected;
+	}
+};
+var _mdgriffith$style_elements$Element_Input$arrows = _mdgriffith$style_elements$Element_Internal_Model$Element(
+	{
+		node: 'div',
+		style: _elm_lang$core$Maybe$Nothing,
+		attrs: {
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Attributes$class('arrows'),
+			_1: {ctor: '[]'}
+		},
+		child: _mdgriffith$style_elements$Element$empty,
+		absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+	});
+var _mdgriffith$style_elements$Element_Input$getOptionValue = function (opt) {
+	var _p6 = opt;
+	if (_p6.ctor === 'Choice') {
+		return _p6._0;
+	} else {
+		return _p6._0;
+	}
+};
+var _mdgriffith$style_elements$Element_Input$getLabelText = function (label) {
+	getLabelText:
+	while (true) {
+		var _p7 = label;
+		switch (_p7.ctor) {
+			case 'LabelBelow':
+				return _mdgriffith$style_elements$Element_Internal_Modify$getText(_p7._0);
+			case 'LabelAbove':
+				return _mdgriffith$style_elements$Element_Internal_Modify$getText(_p7._0);
+			case 'LabelOnRight':
+				return _mdgriffith$style_elements$Element_Internal_Modify$getText(_p7._0);
+			case 'LabelOnLeft':
+				return _mdgriffith$style_elements$Element_Internal_Modify$getText(_p7._0);
+			case 'HiddenLabel':
+				return _p7._0;
+			default:
+				var _v6 = _p7._1;
+				label = _v6;
+				continue getLabelText;
+		}
+	}
+};
+var _mdgriffith$style_elements$Element_Input$hidden = _mdgriffith$style_elements$Element_Attributes$inlineStyle(
+	{
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'position', _1: 'absolute'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'opacity', _1: '0'},
+			_1: {ctor: '[]'}
+		}
+	});
+var _mdgriffith$style_elements$Element_Input$autofocusAttr = function (_p8) {
+	return _mdgriffith$style_elements$Element_Attributes$toAttr(
+		_elm_lang$html$Html_Attributes$autofocus(_p8));
+};
+var _mdgriffith$style_elements$Element_Input$autofillAttr = _mdgriffith$style_elements$Element_Attributes$attribute('autocomplete');
+var _mdgriffith$style_elements$Element_Input$readonlyAttr = function (_p9) {
+	return _mdgriffith$style_elements$Element_Attributes$toAttr(
+		_elm_lang$html$Html_Attributes$readonly(_p9));
+};
+var _mdgriffith$style_elements$Element_Input$spellcheckAttr = function (_p10) {
+	return _mdgriffith$style_elements$Element_Attributes$toAttr(
+		_elm_lang$html$Html_Attributes$spellcheck(_p10));
+};
+var _mdgriffith$style_elements$Element_Input$addOptionsAsAttrs = F2(
+	function (options, attrs) {
+		var renderOption = F2(
+			function (option, attrs) {
+				var _p11 = option;
+				switch (_p11.ctor) {
+					case 'Key':
+						return attrs;
+					case 'FocusOnLoad':
+						return {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Input$autofocusAttr(true),
+							_1: attrs
+						};
+					case 'SpellCheck':
+						return {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Input$spellcheckAttr(true),
+							_1: attrs
+						};
+					case 'AutoFill':
+						return {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Input$autofillAttr(_p11._0),
+							_1: attrs
+						};
+					case 'Disabled':
+						return attrs;
+					default:
+						return attrs;
+				}
+			});
+		return A3(_elm_lang$core$List$foldr, renderOption, attrs, options);
+	});
+var _mdgriffith$style_elements$Element_Input$disabledAttr = function (_p12) {
+	return _mdgriffith$style_elements$Element_Attributes$toAttr(
+		_elm_lang$html$Html_Attributes$disabled(_p12));
+};
+var _mdgriffith$style_elements$Element_Input$tabindex = function (_p13) {
+	return _mdgriffith$style_elements$Element_Attributes$toAttr(
+		_elm_lang$html$Html_Attributes$tabindex(_p13));
+};
+var _mdgriffith$style_elements$Element_Input$textValueAttr = function (_p14) {
+	return _mdgriffith$style_elements$Element_Attributes$toAttr(
+		_elm_lang$html$Html_Attributes$defaultValue(_p14));
+};
+var _mdgriffith$style_elements$Element_Input$valueAttr = function (_p15) {
+	return _mdgriffith$style_elements$Element_Attributes$toAttr(
+		_elm_lang$html$Html_Attributes$value(_p15));
+};
+var _mdgriffith$style_elements$Element_Input$name = function (_p16) {
+	return _mdgriffith$style_elements$Element_Attributes$toAttr(
+		_elm_lang$html$Html_Attributes$name(_p16));
+};
+var _mdgriffith$style_elements$Element_Input$selectedAttr = function (_p17) {
+	return _mdgriffith$style_elements$Element_Attributes$toAttr(
+		_elm_lang$html$Html_Attributes$selected(_p17));
+};
+var _mdgriffith$style_elements$Element_Input$checked = function (_p18) {
+	return _mdgriffith$style_elements$Element_Attributes$toAttr(
+		_elm_lang$html$Html_Attributes$checked(_p18));
+};
+var _mdgriffith$style_elements$Element_Input$type_ = function (_p19) {
+	return _mdgriffith$style_elements$Element_Attributes$toAttr(
+		_elm_lang$html$Html_Attributes$type_(_p19));
+};
+var _mdgriffith$style_elements$Element_Input$pointer = _mdgriffith$style_elements$Element_Attributes$inlineStyle(
+	{
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'cursor', _1: 'pointer'},
+		_1: {ctor: '[]'}
+	});
+var _mdgriffith$style_elements$Element_Input$Checkbox = F4(
+	function (a, b, c, d) {
+		return {onChange: a, label: b, checked: c, options: d};
+	});
+var _mdgriffith$style_elements$Element_Input$StyledCheckbox = F5(
+	function (a, b, c, d, e) {
+		return {onChange: a, label: b, checked: c, options: d, icon: e};
+	});
+var _mdgriffith$style_elements$Element_Input$Text = F4(
+	function (a, b, c, d) {
+		return {onChange: a, value: b, label: c, options: d};
+	});
+var _mdgriffith$style_elements$Element_Input$LabelIntermediate = F6(
+	function (a, b, c, d, e, f) {
+		return {style: a, attrs: b, label: c, error: d, isDisabled: e, input: f};
+	});
+var _mdgriffith$style_elements$Element_Input$Radio = F5(
+	function (a, b, c, d, e) {
+		return {onChange: a, choices: b, selected: c, label: d, options: e};
+	});
+var _mdgriffith$style_elements$Element_Input$MasterRadio = F6(
+	function (a, b, c, d, e, f) {
+		return {selection: a, choices: b, label: c, disabled: d, errors: e, key: f};
+	});
+var _mdgriffith$style_elements$Element_Input$SelectMenuValues = F7(
+	function (a, b, c, d, e, f, g) {
+		return {max: a, menu: b, label: c, options: d, onUpdate: e, isOpen: f, selected: g};
+	});
+var _mdgriffith$style_elements$Element_Input$SearchMenu = F9(
+	function (a, b, c, d, e, f, g, h, i) {
+		return {max: a, menu: b, label: c, options: d, query: e, selected: f, focus: g, onUpdate: h, isOpen: i};
+	});
+var _mdgriffith$style_elements$Element_Input$Select = F5(
+	function (a, b, c, d, e) {
+		return {$with: a, max: b, menu: c, label: d, options: e};
+	});
+var _mdgriffith$style_elements$Element_Input$TextArea = {ctor: 'TextArea'};
+var _mdgriffith$style_elements$Element_Input$Email = {ctor: 'Email'};
+var _mdgriffith$style_elements$Element_Input$Password = {ctor: 'Password'};
+var _mdgriffith$style_elements$Element_Input$Search = {ctor: 'Search'};
+var _mdgriffith$style_elements$Element_Input$Plain = {ctor: 'Plain'};
+var _mdgriffith$style_elements$Element_Input$Key = function (a) {
+	return {ctor: 'Key', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$textKey = _mdgriffith$style_elements$Element_Input$Key;
+var _mdgriffith$style_elements$Element_Input$radioKey = _mdgriffith$style_elements$Element_Input$Key;
+var _mdgriffith$style_elements$Element_Input$SpellCheck = {ctor: 'SpellCheck'};
+var _mdgriffith$style_elements$Element_Input$allowSpellcheck = _mdgriffith$style_elements$Element_Input$SpellCheck;
+var _mdgriffith$style_elements$Element_Input$AutoFill = function (a) {
+	return {ctor: 'AutoFill', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$autofill = _mdgriffith$style_elements$Element_Input$AutoFill;
+var _mdgriffith$style_elements$Element_Input$autofillSection = function (section) {
+	return _mdgriffith$style_elements$Element_Input$AutoFill(
+		A2(_elm_lang$core$Basics_ops['++'], 'section-', section));
+};
+var _mdgriffith$style_elements$Element_Input$FocusOnLoad = {ctor: 'FocusOnLoad'};
+var _mdgriffith$style_elements$Element_Input$focusOnLoad = _mdgriffith$style_elements$Element_Input$FocusOnLoad;
+var _mdgriffith$style_elements$Element_Input$Disabled = {ctor: 'Disabled'};
+var _mdgriffith$style_elements$Element_Input$disabled = _mdgriffith$style_elements$Element_Input$Disabled;
+var _mdgriffith$style_elements$Element_Input$ErrorOpt = function (a) {
+	return {ctor: 'ErrorOpt', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$ErrorAbove = function (a) {
+	return {ctor: 'ErrorAbove', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$errorAbove = function (el) {
+	return _mdgriffith$style_elements$Element_Input$ErrorOpt(
+		_mdgriffith$style_elements$Element_Input$ErrorAbove(
+			A2(
+				_mdgriffith$style_elements$Element_Internal_Modify$addAttr,
+				A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-live', 'assertive'),
+				el)));
+};
+var _mdgriffith$style_elements$Element_Input$ErrorBelow = function (a) {
+	return {ctor: 'ErrorBelow', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$errorBelow = function (el) {
+	return _mdgriffith$style_elements$Element_Input$ErrorOpt(
+		_mdgriffith$style_elements$Element_Input$ErrorBelow(
+			A2(
+				_mdgriffith$style_elements$Element_Internal_Modify$addAttr,
+				A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-live', 'assertive'),
+				el)));
+};
+var _mdgriffith$style_elements$Element_Input$PlaceHolder = F2(
+	function (a, b) {
+		return {ctor: 'PlaceHolder', _0: a, _1: b};
+	});
+var _mdgriffith$style_elements$Element_Input$placeholder = function (_p20) {
+	var _p21 = _p20;
+	var _p23 = _p21.text;
+	var _p22 = _p21.label;
+	if (_p22.ctor === 'PlaceHolder') {
+		return A2(_mdgriffith$style_elements$Element_Input$PlaceHolder, _p23, _p22._1);
+	} else {
+		return A2(_mdgriffith$style_elements$Element_Input$PlaceHolder, _p23, _p22);
+	}
+};
+var _mdgriffith$style_elements$Element_Input$HiddenLabel = function (a) {
+	return {ctor: 'HiddenLabel', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$hiddenLabel = _mdgriffith$style_elements$Element_Input$HiddenLabel;
+var _mdgriffith$style_elements$Element_Input$LabelOnLeft = function (a) {
+	return {ctor: 'LabelOnLeft', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$labelLeft = _mdgriffith$style_elements$Element_Input$LabelOnLeft;
+var _mdgriffith$style_elements$Element_Input$LabelOnRight = function (a) {
+	return {ctor: 'LabelOnRight', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$labelRight = _mdgriffith$style_elements$Element_Input$LabelOnRight;
+var _mdgriffith$style_elements$Element_Input$LabelAbove = function (a) {
+	return {ctor: 'LabelAbove', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$labelAbove = _mdgriffith$style_elements$Element_Input$LabelAbove;
+var _mdgriffith$style_elements$Element_Input$labelBelow = _mdgriffith$style_elements$Element_Input$LabelAbove;
+var _mdgriffith$style_elements$Element_Input$LabelBelow = function (a) {
+	return {ctor: 'LabelBelow', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$ErrorAboveBelow = F2(
+	function (a, b) {
+		return {ctor: 'ErrorAboveBelow', _0: a, _1: b};
+	});
+var _mdgriffith$style_elements$Element_Input$ErrorAllAbove = function (a) {
+	return {ctor: 'ErrorAllAbove', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$ErrorAllBelow = function (a) {
+	return {ctor: 'ErrorAllBelow', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$applyLabel = F8(
+	function (maybeKey, style, attrs, label, errors, isDisabled, hasPointer, input) {
+		applyLabel:
+		while (true) {
+			var orientedErrors = A3(
+				_elm_lang$core$List$foldl,
+				F2(
+					function (currentError, oriented) {
+						var _p24 = oriented;
+						if (_p24.ctor === 'Nothing') {
+							return _elm_lang$core$Maybe$Just(
+								function () {
+									var _p25 = currentError;
+									if (_p25.ctor === 'ErrorAbove') {
+										return _mdgriffith$style_elements$Element_Input$ErrorAllAbove(
+											{
+												ctor: '::',
+												_0: _p25._0,
+												_1: {ctor: '[]'}
+											});
+									} else {
+										return _mdgriffith$style_elements$Element_Input$ErrorAllBelow(
+											{
+												ctor: '::',
+												_0: _p25._0,
+												_1: {ctor: '[]'}
+											});
+									}
+								}());
+						} else {
+							return _elm_lang$core$Maybe$Just(
+								function () {
+									var _p26 = _p24._0;
+									switch (_p26.ctor) {
+										case 'ErrorAllAbove':
+											var _p28 = _p26._0;
+											var _p27 = currentError;
+											if (_p27.ctor === 'ErrorAbove') {
+												return _mdgriffith$style_elements$Element_Input$ErrorAllAbove(
+													{ctor: '::', _0: _p27._0, _1: _p28});
+											} else {
+												return A2(
+													_mdgriffith$style_elements$Element_Input$ErrorAboveBelow,
+													{
+														ctor: '::',
+														_0: _p27._0,
+														_1: {ctor: '[]'}
+													},
+													_p28);
+											}
+										case 'ErrorAllBelow':
+											var _p30 = _p26._0;
+											var _p29 = currentError;
+											if (_p29.ctor === 'ErrorAbove') {
+												return A2(
+													_mdgriffith$style_elements$Element_Input$ErrorAboveBelow,
+													{
+														ctor: '::',
+														_0: _p29._0,
+														_1: {ctor: '[]'}
+													},
+													_p30);
+											} else {
+												return _mdgriffith$style_elements$Element_Input$ErrorAllBelow(
+													{ctor: '::', _0: _p29._0, _1: _p30});
+											}
+										default:
+											var _p33 = _p26._1;
+											var _p32 = _p26._0;
+											var _p31 = currentError;
+											if (_p31.ctor === 'ErrorAbove') {
+												return A2(
+													_mdgriffith$style_elements$Element_Input$ErrorAboveBelow,
+													{ctor: '::', _0: _p31._0, _1: _p32},
+													_p33);
+											} else {
+												return A2(
+													_mdgriffith$style_elements$Element_Input$ErrorAboveBelow,
+													_p32,
+													{ctor: '::', _0: _p31._0, _1: _p33});
+											}
+									}
+								}());
+						}
+					}),
+				_elm_lang$core$Maybe$Nothing,
+				errors);
+			var labelContainer = F2(
+				function (direction, children) {
+					var _p34 = maybeKey;
+					if (_p34.ctor === 'Nothing') {
+						return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+							{
+								node: 'label',
+								style: style,
+								layout: A2(
+									_mdgriffith$style_elements$Style_Internal_Model$FlexLayout,
+									direction,
+									{ctor: '[]'}),
+								attrs: hasPointer ? {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Internal_Model$Width(
+										_mdgriffith$style_elements$Style_Internal_Model$Fill(1)),
+									_1: {ctor: '::', _0: _mdgriffith$style_elements$Element_Input$pointer, _1: attrs}
+								} : {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Internal_Model$Width(
+										_mdgriffith$style_elements$Style_Internal_Model$Fill(1)),
+									_1: attrs
+								},
+								children: _mdgriffith$style_elements$Element_Internal_Model$Normal(children),
+								absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+							});
+					} else {
+						return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+							{
+								node: 'label',
+								style: style,
+								layout: A2(
+									_mdgriffith$style_elements$Style_Internal_Model$FlexLayout,
+									direction,
+									{ctor: '[]'}),
+								attrs: hasPointer ? {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Internal_Model$Width(
+										_mdgriffith$style_elements$Style_Internal_Model$Fill(1)),
+									_1: {ctor: '::', _0: _mdgriffith$style_elements$Element_Input$pointer, _1: attrs}
+								} : {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Internal_Model$Width(
+										_mdgriffith$style_elements$Style_Internal_Model$Fill(1)),
+									_1: attrs
+								},
+								children: _mdgriffith$style_elements$Element_Internal_Model$Keyed(
+									A2(
+										_elm_lang$core$List$indexedMap,
+										F2(
+											function (i, child) {
+												return {
+													ctor: '_Tuple2',
+													_0: A2(
+														_elm_lang$core$Basics_ops['++'],
+														_p34._0,
+														A2(
+															_elm_lang$core$Basics_ops['++'],
+															'-',
+															_elm_lang$core$Basics$toString(i))),
+													_1: child
+												};
+											}),
+										children)),
+								absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+							});
+					}
+				});
+			var forSpacing = function (attr) {
+				var _p35 = attr;
+				if (_p35.ctor === 'Spacing') {
+					return _elm_lang$core$Maybe$Just(attr);
+				} else {
+					return _elm_lang$core$Maybe$Nothing;
+				}
+			};
+			var spacing = A2(
+				_elm_lang$core$Maybe$withDefault,
+				A2(_mdgriffith$style_elements$Element_Internal_Model$Spacing, 0, 0),
+				_elm_lang$core$List$head(
+					_elm_lang$core$List$reverse(
+						A2(_elm_lang$core$List$filterMap, forSpacing, attrs))));
+			var orient = F2(
+				function (direction, children) {
+					return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+						{
+							node: 'div',
+							style: _elm_lang$core$Maybe$Nothing,
+							layout: A2(
+								_mdgriffith$style_elements$Style_Internal_Model$FlexLayout,
+								direction,
+								{ctor: '[]'}),
+							attrs: hasPointer ? {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Input$pointer,
+								_1: {
+									ctor: '::',
+									_0: spacing,
+									_1: {ctor: '[]'}
+								}
+							} : {
+								ctor: '::',
+								_0: spacing,
+								_1: {ctor: '[]'}
+							},
+							children: _mdgriffith$style_elements$Element_Internal_Model$Normal(children),
+							absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+						});
+				});
+			var _p36 = label;
+			switch (_p36.ctor) {
+				case 'PlaceHolder':
+					var _v19 = maybeKey,
+						_v20 = style,
+						_v21 = attrs,
+						_v22 = _p36._1,
+						_v23 = errors,
+						_v24 = isDisabled,
+						_v25 = hasPointer,
+						_v26 = input;
+					maybeKey = _v19;
+					style = _v20;
+					attrs = _v21;
+					label = _v22;
+					errors = _v23;
+					isDisabled = _v24;
+					hasPointer = _v25;
+					input = _v26;
+					continue applyLabel;
+				case 'HiddenLabel':
+					var labeledInput = A2(
+						_elm_lang$core$List$map,
+						_mdgriffith$style_elements$Element_Internal_Modify$addAttr(
+							A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'title', _p36._0)),
+						input);
+					var _p37 = orientedErrors;
+					if (_p37.ctor === 'Nothing') {
+						return A2(labelContainer, _mdgriffith$style_elements$Style_Internal_Model$Down, labeledInput);
+					} else {
+						switch (_p37._0.ctor) {
+							case 'ErrorAllAbove':
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									{
+										ctor: '::',
+										_0: A2(orient, _mdgriffith$style_elements$Style_Internal_Model$GoRight, _p37._0._0),
+										_1: labeledInput
+									});
+							case 'ErrorAllBelow':
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										labeledInput,
+										{
+											ctor: '::',
+											_0: A2(orient, _mdgriffith$style_elements$Style_Internal_Model$GoRight, _p37._0._0),
+											_1: {ctor: '[]'}
+										}));
+							default:
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									{
+										ctor: '::',
+										_0: A2(orient, _mdgriffith$style_elements$Style_Internal_Model$GoRight, _p37._0._0),
+										_1: A2(
+											_elm_lang$core$Basics_ops['++'],
+											labeledInput,
+											{
+												ctor: '::',
+												_0: A2(orient, _mdgriffith$style_elements$Style_Internal_Model$GoRight, _p37._0._1),
+												_1: {ctor: '[]'}
+											})
+									});
+						}
+					}
+				case 'LabelAbove':
+					var _p39 = _p36._0;
+					var _p38 = orientedErrors;
+					if (_p38.ctor === 'Nothing') {
+						return A2(
+							labelContainer,
+							_mdgriffith$style_elements$Style_Internal_Model$Down,
+							{ctor: '::', _0: _p39, _1: input});
+					} else {
+						switch (_p38._0.ctor) {
+							case 'ErrorAllAbove':
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									{
+										ctor: '::',
+										_0: A2(
+											orient,
+											_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+											{ctor: '::', _0: _p39, _1: _p38._0._0}),
+										_1: input
+									});
+							case 'ErrorAllBelow':
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									{
+										ctor: '::',
+										_0: _p39,
+										_1: A2(
+											_elm_lang$core$Basics_ops['++'],
+											input,
+											{
+												ctor: '::',
+												_0: A2(orient, _mdgriffith$style_elements$Style_Internal_Model$GoRight, _p38._0._0),
+												_1: {ctor: '[]'}
+											})
+									});
+							default:
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									{
+										ctor: '::',
+										_0: A2(
+											orient,
+											_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+											{ctor: '::', _0: _p39, _1: _p38._0._0}),
+										_1: A2(
+											_elm_lang$core$Basics_ops['++'],
+											input,
+											{
+												ctor: '::',
+												_0: A2(orient, _mdgriffith$style_elements$Style_Internal_Model$GoRight, _p38._0._1),
+												_1: {ctor: '[]'}
+											})
+									});
+						}
+					}
+				case 'LabelBelow':
+					var _p41 = _p36._0;
+					var _p40 = orientedErrors;
+					if (_p40.ctor === 'Nothing') {
+						return A2(
+							labelContainer,
+							_mdgriffith$style_elements$Style_Internal_Model$Down,
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								input,
+								{
+									ctor: '::',
+									_0: _p41,
+									_1: {ctor: '[]'}
+								}));
+					} else {
+						switch (_p40._0.ctor) {
+							case 'ErrorAllAbove':
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									{
+										ctor: '::',
+										_0: A2(orient, _mdgriffith$style_elements$Style_Internal_Model$GoRight, _p40._0._0),
+										_1: A2(
+											_elm_lang$core$Basics_ops['++'],
+											input,
+											{
+												ctor: '::',
+												_0: _p41,
+												_1: {ctor: '[]'}
+											})
+									});
+							case 'ErrorAllBelow':
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										input,
+										{
+											ctor: '::',
+											_0: A2(
+												orient,
+												_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+												{ctor: '::', _0: _p41, _1: _p40._0._0}),
+											_1: {ctor: '[]'}
+										}));
+							default:
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									{
+										ctor: '::',
+										_0: A2(orient, _mdgriffith$style_elements$Style_Internal_Model$GoRight, _p40._0._0),
+										_1: A2(
+											_elm_lang$core$Basics_ops['++'],
+											input,
+											{
+												ctor: '::',
+												_0: A2(
+													orient,
+													_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+													{ctor: '::', _0: _p41, _1: _p40._0._1}),
+												_1: {ctor: '[]'}
+											})
+									});
+						}
+					}
+				case 'LabelOnRight':
+					var _p43 = _p36._0;
+					var _p42 = orientedErrors;
+					if (_p42.ctor === 'Nothing') {
+						return A2(
+							labelContainer,
+							_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								input,
+								{
+									ctor: '::',
+									_0: _p43,
+									_1: {ctor: '[]'}
+								}));
+					} else {
+						switch (_p42._0.ctor) {
+							case 'ErrorAllAbove':
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_p42._0._0,
+										{
+											ctor: '::',
+											_0: A2(
+												orient,
+												_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+												A2(
+													_elm_lang$core$Basics_ops['++'],
+													input,
+													{
+														ctor: '::',
+														_0: _p43,
+														_1: {ctor: '[]'}
+													})),
+											_1: {ctor: '[]'}
+										}));
+							case 'ErrorAllBelow':
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									{
+										ctor: '::',
+										_0: A2(
+											orient,
+											_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												input,
+												{
+													ctor: '::',
+													_0: _p43,
+													_1: {ctor: '[]'}
+												})),
+										_1: _p42._0._0
+									});
+							default:
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_p42._0._0,
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											{
+												ctor: '::',
+												_0: A2(
+													orient,
+													_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														input,
+														{
+															ctor: '::',
+															_0: _p43,
+															_1: {ctor: '[]'}
+														})),
+												_1: {ctor: '[]'}
+											},
+											_p42._0._1)));
+						}
+					}
+				default:
+					var _p45 = _p36._0;
+					var _p44 = orientedErrors;
+					if (_p44.ctor === 'Nothing') {
+						return A2(
+							labelContainer,
+							_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+							{ctor: '::', _0: _p45, _1: input});
+					} else {
+						switch (_p44._0.ctor) {
+							case 'ErrorAllAbove':
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_p44._0._0,
+										{
+											ctor: '::',
+											_0: A2(
+												orient,
+												_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+												{ctor: '::', _0: _p45, _1: input}),
+											_1: {ctor: '[]'}
+										}));
+							case 'ErrorAllBelow':
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									{
+										ctor: '::',
+										_0: A2(
+											orient,
+											_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+											{ctor: '::', _0: _p45, _1: input}),
+										_1: _p44._0._0
+									});
+							default:
+								return A2(
+									labelContainer,
+									_mdgriffith$style_elements$Style_Internal_Model$Down,
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_p44._0._0,
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											{
+												ctor: '::',
+												_0: A2(
+													orient,
+													_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+													{ctor: '::', _0: _p45, _1: input}),
+												_1: {ctor: '[]'}
+											},
+											_p44._0._1)));
+						}
+					}
+			}
+		}
+	});
+var _mdgriffith$style_elements$Element_Input$checkbox = F3(
+	function (style, attrs, input) {
+		var isDisabled = A2(
+			_elm_lang$core$List$any,
+			F2(
+				function (x, y) {
+					return _elm_lang$core$Native_Utils.eq(x, y);
+				})(_mdgriffith$style_elements$Element_Input$Disabled),
+			input.options);
+		var forErrors = function (opt) {
+			var _p46 = opt;
+			if (_p46.ctor === 'ErrorOpt') {
+				return _elm_lang$core$Maybe$Just(_p46._0);
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		};
+		var errs = A2(_elm_lang$core$List$filterMap, forErrors, input.options);
+		var withError = function (attrs) {
+			return (!_elm_lang$core$List$isEmpty(errs)) ? {
+				ctor: '::',
+				_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-invalid', 'true'),
+				_1: attrs
+			} : attrs;
+		};
+		var withDisabled = function (attrs) {
+			return isDisabled ? {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$class('disabled-input'),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Input$disabledAttr(true),
+					_1: attrs
+				}
+			} : {ctor: '::', _0: _mdgriffith$style_elements$Element_Input$pointer, _1: attrs};
+		};
+		var inputElem = {
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Internal_Model$Element(
+				{
+					node: 'input',
+					style: _elm_lang$core$Maybe$Nothing,
+					attrs: function (_p47) {
+						return A2(
+							_mdgriffith$style_elements$Element_Input$addOptionsAsAttrs,
+							input.options,
+							withError(
+								withDisabled(_p47)));
+					}(
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Input$type_('checkbox'),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Input$checked(input.checked),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Events$onCheck(input.onChange),
+									_1: {ctor: '[]'}
+								}
+							}
+						}),
+					child: _mdgriffith$style_elements$Element_Internal_Model$Empty,
+					absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+				}),
+			_1: {ctor: '[]'}
+		};
+		return A8(
+			_mdgriffith$style_elements$Element_Input$applyLabel,
+			_elm_lang$core$Maybe$Nothing,
+			_elm_lang$core$Maybe$Nothing,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$spacing(5),
+				_1: {ctor: '::', _0: _mdgriffith$style_elements$Element_Attributes$verticalCenter, _1: attrs}
+			},
+			_mdgriffith$style_elements$Element_Input$LabelOnRight(input.label),
+			errs,
+			isDisabled,
+			true,
+			inputElem);
+	});
+var _mdgriffith$style_elements$Element_Input$styledCheckbox = F3(
+	function (style, attrs, input) {
+		var isDisabled = A2(
+			_elm_lang$core$List$any,
+			F2(
+				function (x, y) {
+					return _elm_lang$core$Native_Utils.eq(x, y);
+				})(_mdgriffith$style_elements$Element_Input$Disabled),
+			input.options);
+		var forErrors = function (opt) {
+			var _p48 = opt;
+			if (_p48.ctor === 'ErrorOpt') {
+				return _elm_lang$core$Maybe$Just(_p48._0);
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		};
+		var errs = A2(_elm_lang$core$List$filterMap, forErrors, input.options);
+		var withError = function (attrs) {
+			return (!_elm_lang$core$List$isEmpty(errs)) ? {
+				ctor: '::',
+				_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-invalid', 'true'),
+				_1: attrs
+			} : attrs;
+		};
+		var withDisabled = function (attrs) {
+			return isDisabled ? {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$class('disabled-input'),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Input$disabledAttr(true),
+					_1: attrs
+				}
+			} : {ctor: '::', _0: _mdgriffith$style_elements$Element_Input$pointer, _1: attrs};
+		};
+		var inputElem = {
+			ctor: '::',
+			_0: _mdgriffith$style_elements$Element_Internal_Model$Element(
+				{
+					node: 'input',
+					style: _elm_lang$core$Maybe$Nothing,
+					attrs: function (_p49) {
+						return A2(
+							_mdgriffith$style_elements$Element_Input$addOptionsAsAttrs,
+							input.options,
+							withError(
+								withDisabled(_p49)));
+					}(
+						{
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Input$type_('checkbox'),
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Input$checked(input.checked),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Events$onCheck(input.onChange),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Input$hidden,
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Element_Attributes$toAttr(
+												_elm_lang$html$Html_Attributes$class('focus-override')),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}),
+					child: _mdgriffith$style_elements$Element_Internal_Model$Empty,
+					absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_mdgriffith$style_elements$Element_Internal_Modify$addAttr,
+					_mdgriffith$style_elements$Element_Attributes$toAttr(
+						_elm_lang$html$Html_Attributes$class('alt-icon')),
+					input.icon(input.checked)),
+				_1: {ctor: '[]'}
+			}
+		};
+		return A8(
+			_mdgriffith$style_elements$Element_Input$applyLabel,
+			_elm_lang$core$Maybe$Nothing,
+			_elm_lang$core$Maybe$Nothing,
+			{
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$spacing(5),
+				_1: {ctor: '::', _0: _mdgriffith$style_elements$Element_Attributes$verticalCenter, _1: attrs}
+			},
+			_mdgriffith$style_elements$Element_Input$LabelOnRight(input.label),
+			errs,
+			isDisabled,
+			true,
+			inputElem);
+	});
+var _mdgriffith$style_elements$Element_Input$textHelper = F5(
+	function (kind, addedOptions, style, attrs, input) {
+		var kindAsText = function () {
+			var _p50 = kind;
+			switch (_p50.ctor) {
+				case 'Plain':
+					return 'text';
+				case 'Search':
+					return 'search';
+				case 'Password':
+					return 'password';
+				case 'Email':
+					return 'email';
+				default:
+					return 'text';
+			}
+		}();
+		var forErrors = function (opt) {
+			var _p51 = opt;
+			if (_p51.ctor === 'ErrorOpt') {
+				return _elm_lang$core$Maybe$Just(_p51._0);
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		};
+		var forKey = function (opt) {
+			var _p52 = opt;
+			if (_p52.ctor === 'Key') {
+				return _elm_lang$core$Maybe$Just(_p52._0);
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		};
+		var withPlaceholder = function (attrs) {
+			var _p53 = input.label;
+			if (_p53.ctor === 'PlaceHolder') {
+				return {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$toAttr(
+						_elm_lang$html$Html_Attributes$placeholder(_p53._0)),
+					_1: attrs
+				};
+			} else {
+				return attrs;
+			}
+		};
+		var forSpacing = function (attr) {
+			var _p54 = attr;
+			if (_p54.ctor === 'Spacing') {
+				return _elm_lang$core$Maybe$Just(attr);
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		};
+		var spacing = A2(
+			_elm_lang$core$Maybe$withDefault,
+			A2(_mdgriffith$style_elements$Element_Internal_Model$Spacing, 7, 7),
+			_elm_lang$core$List$head(
+				_elm_lang$core$List$reverse(
+					A2(_elm_lang$core$List$filterMap, forSpacing, attrs))));
+		var combineFill = F2(
+			function (opt, _p55) {
+				var _p56 = _p55;
+				var _p61 = _p56._0;
+				var _p60 = _p56._1;
+				var _p57 = opt;
+				if (_p57.ctor === 'AutoFill') {
+					var _p59 = _p57._0;
+					var _p58 = _p60;
+					if (_p58.ctor === 'Nothing') {
+						return {
+							ctor: '_Tuple2',
+							_0: _p61,
+							_1: _elm_lang$core$Maybe$Just(
+								{
+									ctor: '::',
+									_0: _p59,
+									_1: {ctor: '[]'}
+								})
+						};
+					} else {
+						return {
+							ctor: '_Tuple2',
+							_0: _p61,
+							_1: _elm_lang$core$Maybe$Just(
+								{ctor: '::', _0: _p59, _1: _p58._0})
+						};
+					}
+				} else {
+					return {
+						ctor: '_Tuple2',
+						_0: {ctor: '::', _0: opt, _1: _p61},
+						_1: _p60
+					};
+				}
+			});
+		var options = function (_p62) {
+			var _p63 = _p62;
+			var _p65 = _p63._0;
+			var _p64 = _p63._1;
+			if (_p64.ctor === 'Nothing') {
+				return _p65;
+			} else {
+				return {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Input$AutoFill(
+						A2(_elm_lang$core$String$join, ' ', _p64._0)),
+					_1: _p65
+				};
+			}
+		}(
+			A3(
+				_elm_lang$core$List$foldr,
+				combineFill,
+				{
+					ctor: '_Tuple2',
+					_0: {ctor: '[]'},
+					_1: _elm_lang$core$Maybe$Nothing
+				},
+				A2(_elm_lang$core$Basics_ops['++'], addedOptions, input.options)));
+		var withDisabled = function (attrs) {
+			return A2(
+				_elm_lang$core$List$any,
+				F2(
+					function (x, y) {
+						return _elm_lang$core$Native_Utils.eq(x, y);
+					})(_mdgriffith$style_elements$Element_Input$Disabled),
+				options) ? {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$class('disabled-input'),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Input$disabledAttr(true),
+					_1: attrs
+				}
+			} : attrs;
+		};
+		var withReadonly = function (attrs) {
+			return A2(
+				_elm_lang$core$List$any,
+				F2(
+					function (x, y) {
+						return _elm_lang$core$Native_Utils.eq(x, y);
+					})(_mdgriffith$style_elements$Element_Input$Disabled),
+				options) ? {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Attributes$class('disabled-input'),
+				_1: {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Input$readonlyAttr(true),
+					_1: attrs
+				}
+			} : attrs;
+		};
+		var withSpellCheck = function (attrs) {
+			return A2(
+				_elm_lang$core$List$any,
+				F2(
+					function (x, y) {
+						return _elm_lang$core$Native_Utils.eq(x, y);
+					})(_mdgriffith$style_elements$Element_Input$SpellCheck),
+				options) ? {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Input$spellcheckAttr(true),
+				_1: attrs
+			} : {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Input$spellcheckAttr(false),
+				_1: attrs
+			};
+		};
+		var key = _elm_lang$core$List$head(
+			A2(_elm_lang$core$List$filterMap, forKey, options));
+		var errors = A2(_elm_lang$core$List$filterMap, forErrors, options);
+		var withError = function (attrs) {
+			return (!_elm_lang$core$List$isEmpty(errors)) ? {
+				ctor: '::',
+				_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-invalid', 'true'),
+				_1: attrs
+			} : attrs;
+		};
+		var isDisabled = A2(
+			_elm_lang$core$List$any,
+			F2(
+				function (x, y) {
+					return _elm_lang$core$Native_Utils.eq(x, y);
+				})(_mdgriffith$style_elements$Element_Input$Disabled),
+			options);
+		var withAutofocus = function (attrs) {
+			return A2(
+				_elm_lang$core$List$any,
+				F2(
+					function (x, y) {
+						return _elm_lang$core$Native_Utils.eq(x, y);
+					})(_mdgriffith$style_elements$Element_Input$FocusOnLoad),
+				options) ? {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Input$autofocusAttr(true),
+				_1: attrs
+			} : attrs;
+		};
+		var inputElem = function () {
+			var _p66 = kind;
+			if (_p66.ctor === 'TextArea') {
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					{
+						node: 'textarea',
+						style: _elm_lang$core$Maybe$Just(style),
+						attrs: function (_p67) {
+							return A2(
+								_mdgriffith$style_elements$Element_Input$addOptionsAsAttrs,
+								options,
+								withSpellCheck(
+									withError(
+										withReadonly(
+											withPlaceholder(_p67)))));
+						}(
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Internal_Model$Width(
+									_mdgriffith$style_elements$Style_Internal_Model$Fill(1)),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Attributes$inlineStyle(
+										{
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'resize', _1: 'none'},
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Events$onInput(input.onChange),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Element_Input$textValueAttr(input.value),
+											_1: attrs
+										}
+									}
+								}
+							}),
+						child: A2(
+							_mdgriffith$style_elements$Element_Internal_Model$Text,
+							{decoration: _mdgriffith$style_elements$Element_Internal_Model$RawText, inline: false},
+							''),
+						absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+					});
+			} else {
+				return _mdgriffith$style_elements$Element_Internal_Model$Element(
+					{
+						node: 'input',
+						style: _elm_lang$core$Maybe$Just(style),
+						attrs: function (_p68) {
+							return A2(
+								_mdgriffith$style_elements$Element_Input$addOptionsAsAttrs,
+								options,
+								withError(
+									withDisabled(
+										withPlaceholder(_p68))));
+						}(
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Internal_Model$Width(
+									_mdgriffith$style_elements$Style_Internal_Model$Fill(1)),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Input$type_(kindAsText),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Events$onInput(input.onChange),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Element_Input$textValueAttr(input.value),
+											_1: attrs
+										}
+									}
+								}
+							}),
+						child: _mdgriffith$style_elements$Element_Internal_Model$Empty,
+						absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+					});
+			}
+		}();
+		return A8(
+			_mdgriffith$style_elements$Element_Input$applyLabel,
+			key,
+			_elm_lang$core$Maybe$Nothing,
+			{
+				ctor: '::',
+				_0: spacing,
+				_1: {ctor: '[]'}
+			},
+			input.label,
+			errors,
+			isDisabled,
+			false,
+			{
+				ctor: '::',
+				_0: inputElem,
+				_1: {ctor: '[]'}
+			});
+	});
+var _mdgriffith$style_elements$Element_Input$text = A2(
+	_mdgriffith$style_elements$Element_Input$textHelper,
+	_mdgriffith$style_elements$Element_Input$Plain,
+	{ctor: '[]'});
+var _mdgriffith$style_elements$Element_Input$search = A2(
+	_mdgriffith$style_elements$Element_Input$textHelper,
+	_mdgriffith$style_elements$Element_Input$Search,
+	{ctor: '[]'});
+var _mdgriffith$style_elements$Element_Input$newPassword = A2(
+	_mdgriffith$style_elements$Element_Input$textHelper,
+	_mdgriffith$style_elements$Element_Input$Password,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Input$AutoFill('new-password'),
+		_1: {ctor: '[]'}
+	});
+var _mdgriffith$style_elements$Element_Input$currentPassword = A2(
+	_mdgriffith$style_elements$Element_Input$textHelper,
+	_mdgriffith$style_elements$Element_Input$Password,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Input$AutoFill('current-password'),
+		_1: {ctor: '[]'}
+	});
+var _mdgriffith$style_elements$Element_Input$username = A2(
+	_mdgriffith$style_elements$Element_Input$textHelper,
+	_mdgriffith$style_elements$Element_Input$Plain,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Input$AutoFill('username'),
+		_1: {ctor: '[]'}
+	});
+var _mdgriffith$style_elements$Element_Input$email = A2(
+	_mdgriffith$style_elements$Element_Input$textHelper,
+	_mdgriffith$style_elements$Element_Input$Email,
+	{
+		ctor: '::',
+		_0: _mdgriffith$style_elements$Element_Input$AutoFill('email'),
+		_1: {ctor: '[]'}
+	});
+var _mdgriffith$style_elements$Element_Input$multiline = A2(
+	_mdgriffith$style_elements$Element_Input$textHelper,
+	_mdgriffith$style_elements$Element_Input$TextArea,
+	{ctor: '[]'});
+var _mdgriffith$style_elements$Element_Input$ChoiceWith = F2(
+	function (a, b) {
+		return {ctor: 'ChoiceWith', _0: a, _1: b};
+	});
+var _mdgriffith$style_elements$Element_Input$styledChoice = F2(
+	function (value, selected) {
+		var choose = function (state) {
+			var _p69 = state;
+			switch (_p69.ctor) {
+				case 'Focused':
+					return selected(false);
+				case 'Selected':
+					return selected(true);
+				case 'SelectedInBox':
+					return selected(true);
+				default:
+					return selected(false);
+			}
+		};
+		return A2(_mdgriffith$style_elements$Element_Input$ChoiceWith, value, choose);
+	});
+var _mdgriffith$style_elements$Element_Input$styledSelectChoice = _mdgriffith$style_elements$Element_Input$ChoiceWith;
+var _mdgriffith$style_elements$Element_Input$Choice = F2(
+	function (a, b) {
+		return {ctor: 'Choice', _0: a, _1: b};
+	});
+var _mdgriffith$style_elements$Element_Input$choice = _mdgriffith$style_elements$Element_Input$Choice;
+var _mdgriffith$style_elements$Element_Input$SelectedInBox = {ctor: 'SelectedInBox'};
+var _mdgriffith$style_elements$Element_Input$Selected = {ctor: 'Selected'};
+var _mdgriffith$style_elements$Element_Input$Focused = {ctor: 'Focused'};
+var _mdgriffith$style_elements$Element_Input$Idle = {ctor: 'Idle'};
+var _mdgriffith$style_elements$Element_Input$radioHelper = F4(
+	function (orientation, style, attrs, config) {
+		var isSelected = function (val) {
+			var _p70 = config.selection;
+			if (_p70.ctor === 'Single') {
+				var _p72 = _p70._0;
+				var isSelected = _elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Maybe$Just(val),
+					_p72.selected);
+				return isSelected ? {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Input$checked(true),
+					_1: {ctor: '[]'}
+				} : {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Input$checked(false),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Events$onCheck(
+							function (_p71) {
+								return _p72.onChange(val);
+							}),
+						_1: {ctor: '[]'}
+					}
+				};
+			} else {
+				var _p75 = _p70._0;
+				var isSelected = A2(_elm_lang$core$List$member, val, _p75.selected);
+				return {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Input$checked(isSelected),
+					_1: {
+						ctor: '::',
+						_0: isSelected ? _mdgriffith$style_elements$Element_Events$onCheck(
+							function (_p73) {
+								return _p75.onChange(
+									A2(
+										_elm_lang$core$List$filter,
+										function (item) {
+											return !_elm_lang$core$Native_Utils.eq(item, val);
+										},
+										_p75.selected));
+							}) : _mdgriffith$style_elements$Element_Events$onCheck(
+							function (_p74) {
+								return _p75.onChange(
+									{ctor: '::', _0: val, _1: _p75.selected});
+							}),
+						_1: {ctor: '[]'}
+					}
+				};
+			}
+		};
+		var withDisabled = function (attrs) {
+			return config.disabled ? {
+				ctor: '::',
+				_0: _mdgriffith$style_elements$Element_Input$disabledAttr(true),
+				_1: attrs
+			} : {ctor: '::', _0: _mdgriffith$style_elements$Element_Input$pointer, _1: attrs};
+		};
+		var addSelection = F2(
+			function (val, attrs) {
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					attrs,
+					isSelected(val));
+			});
+		var valueIsSelected = function (val) {
+			var _p76 = config.selection;
+			if (_p76.ctor === 'Single') {
+				return _elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Maybe$Just(val),
+					_p76._0.selected);
+			} else {
+				return A2(_elm_lang$core$List$member, val, _p76._0.selected);
+			}
+		};
+		var group = function () {
+			var _p77 = config.key;
+			if (_p77.ctor === 'Nothing') {
+				return _mdgriffith$style_elements$Element_Input$getLabelText(config.label);
+			} else {
+				return _p77._0;
+			}
+		}();
+		var renderOption = function (option) {
+			var _p78 = option;
+			if (_p78.ctor === 'Choice') {
+				var _p81 = _p78._1;
+				var literalLabel = _mdgriffith$style_elements$Element_Internal_Modify$removeStyle(
+					_mdgriffith$style_elements$Element_Internal_Modify$removeAllAttrs(
+						_mdgriffith$style_elements$Element_Internal_Modify$getChild(_p81)));
+				var textValue = function () {
+					var _p79 = config.key;
+					if (_p79.ctor === 'Nothing') {
+						return _mdgriffith$style_elements$Element_Internal_Modify$getText(_p81);
+					} else {
+						return A2(
+							_elm_lang$core$Basics_ops['++'],
+							_p79._0,
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'-',
+								_mdgriffith$style_elements$Element_Internal_Modify$getText(_p81)));
+					}
+				}();
+				var input = _mdgriffith$style_elements$Element_Internal_Model$Element(
+					{
+						node: 'input',
+						style: _elm_lang$core$Maybe$Nothing,
+						attrs: function (_p80) {
+							return withDisabled(
+								A2(addSelection, _p78._0, _p80));
+						}(
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Input$type_('radio'),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Input$name(group),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Input$valueAttr(textValue),
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						child: _mdgriffith$style_elements$Element_Internal_Model$Empty,
+						absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+					});
+				return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+					{
+						node: 'label',
+						style: _mdgriffith$style_elements$Element_Internal_Modify$getStyle(_p81),
+						layout: A2(
+							_mdgriffith$style_elements$Style_Internal_Model$FlexLayout,
+							_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+							{ctor: '[]'}),
+						attrs: config.disabled ? {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$spacing(5),
+							_1: _mdgriffith$style_elements$Element_Internal_Modify$getAttrs(_p81)
+						} : {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Input$pointer,
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$spacing(5),
+								_1: _mdgriffith$style_elements$Element_Internal_Modify$getAttrs(_p81)
+							}
+						},
+						children: _mdgriffith$style_elements$Element_Internal_Model$Normal(
+							{
+								ctor: '::',
+								_0: input,
+								_1: {
+									ctor: '::',
+									_0: literalLabel,
+									_1: {ctor: '[]'}
+								}
+							}),
+						absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+					});
+			} else {
+				var _p85 = _p78._1;
+				var _p84 = _p78._0;
+				var textValue = function () {
+					var _p82 = config.key;
+					if (_p82.ctor === 'Nothing') {
+						return _mdgriffith$style_elements$Element_Internal_Modify$getText(
+							_p85(_mdgriffith$style_elements$Element_Input$Selected));
+					} else {
+						return A2(
+							_elm_lang$core$Basics_ops['++'],
+							_p82._0,
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'-',
+								_mdgriffith$style_elements$Element_Internal_Modify$getText(
+									_p85(_mdgriffith$style_elements$Element_Input$Selected))));
+					}
+				}();
+				var hiddenInput = _mdgriffith$style_elements$Element_Internal_Model$Element(
+					{
+						node: 'input',
+						style: _elm_lang$core$Maybe$Nothing,
+						attrs: function (_p83) {
+							return withDisabled(
+								A2(addSelection, _p84, _p83));
+						}(
+							{
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Input$type_('radio'),
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Input$hidden,
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Input$name(group),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Element_Input$valueAttr(textValue),
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Element_Attributes$toAttr(
+													_elm_lang$html$Html_Attributes$class('focus-override')),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}),
+						child: _mdgriffith$style_elements$Element_Internal_Model$Empty,
+						absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+					});
+				var viewed = _p85(
+					valueIsSelected(_p84) ? _mdgriffith$style_elements$Element_Input$Selected : _mdgriffith$style_elements$Element_Input$Idle);
+				return _mdgriffith$style_elements$Element_Internal_Model$Layout(
+					{
+						node: 'label',
+						style: _mdgriffith$style_elements$Element_Internal_Modify$getStyle(viewed),
+						layout: A2(
+							_mdgriffith$style_elements$Style_Internal_Model$FlexLayout,
+							_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+							{ctor: '[]'}),
+						attrs: config.disabled ? {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$spacing(5),
+							_1: _mdgriffith$style_elements$Element_Internal_Modify$getAttrs(viewed)
+						} : {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Input$pointer,
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$spacing(5),
+								_1: _mdgriffith$style_elements$Element_Internal_Modify$getAttrs(viewed)
+							}
+						},
+						children: _mdgriffith$style_elements$Element_Internal_Model$Normal(
+							{
+								ctor: '::',
+								_0: hiddenInput,
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Internal_Modify$removeStyle(
+										A2(
+											_mdgriffith$style_elements$Element_Internal_Modify$addAttr,
+											_mdgriffith$style_elements$Element_Attributes$toAttr(
+												_elm_lang$html$Html_Attributes$class('alt-icon')),
+											_mdgriffith$style_elements$Element_Internal_Modify$removeAllAttrs(viewed))),
+									_1: {ctor: '[]'}
+								}
+							}),
+						absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+					});
+			}
+		};
+		var _p86 = orientation;
+		if (_p86.ctor === 'Horizontal') {
+			return A3(
+				_mdgriffith$style_elements$Element$row,
+				style,
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$spacing(10),
+					_1: attrs
+				},
+				A2(_elm_lang$core$List$map, renderOption, config.choices));
+		} else {
+			return A3(
+				_mdgriffith$style_elements$Element$column,
+				style,
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$spacing(10),
+					_1: attrs
+				},
+				A2(_elm_lang$core$List$map, renderOption, config.choices));
+		}
+	});
+var _mdgriffith$style_elements$Element_Input$Multi = function (a) {
+	return {ctor: 'Multi', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$Single = function (a) {
+	return {ctor: 'Single', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$Vertical = {ctor: 'Vertical'};
+var _mdgriffith$style_elements$Element_Input$radio = F3(
+	function (style, attrs, input) {
+		var forKeys = function (opt) {
+			var _p87 = opt;
+			if (_p87.ctor === 'Key') {
+				return _elm_lang$core$Maybe$Just(_p87._0);
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		};
+		var key = A2(
+			_elm_lang$core$String$join,
+			'-',
+			A2(_elm_lang$core$List$filterMap, forKeys, input.options));
+		var isDisabled = A2(
+			_elm_lang$core$List$any,
+			F2(
+				function (x, y) {
+					return _elm_lang$core$Native_Utils.eq(x, y);
+				})(_mdgriffith$style_elements$Element_Input$Disabled),
+			input.options);
+		var forErrors = function (opt) {
+			var _p88 = opt;
+			if (_p88.ctor === 'ErrorOpt') {
+				return _elm_lang$core$Maybe$Just(_p88._0);
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		};
+		var errs = A2(_elm_lang$core$List$filterMap, forErrors, input.options);
+		var inputElem = A4(
+			_mdgriffith$style_elements$Element_Input$radioHelper,
+			_mdgriffith$style_elements$Element_Input$Vertical,
+			style,
+			attrs,
+			{
+				selection: _mdgriffith$style_elements$Element_Input$Single(
+					{selected: input.selected, onChange: input.onChange}),
+				choices: input.choices,
+				label: input.label,
+				disabled: isDisabled,
+				errors: errs,
+				key: _elm_lang$core$Native_Utils.eq(key, '') ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(key)
+			});
+		return A8(
+			_mdgriffith$style_elements$Element_Input$applyLabel,
+			_elm_lang$core$Maybe$Nothing,
+			_elm_lang$core$Maybe$Nothing,
+			{ctor: '[]'},
+			input.label,
+			errs,
+			isDisabled,
+			!isDisabled,
+			{
+				ctor: '::',
+				_0: inputElem,
+				_1: {ctor: '[]'}
+			});
+	});
+var _mdgriffith$style_elements$Element_Input$Horizontal = {ctor: 'Horizontal'};
+var _mdgriffith$style_elements$Element_Input$radioRow = F3(
+	function (style, attrs, config) {
+		var forKeys = function (opt) {
+			var _p89 = opt;
+			if (_p89.ctor === 'Key') {
+				return _elm_lang$core$Maybe$Just(_p89._0);
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		};
+		var key = A2(
+			_elm_lang$core$String$join,
+			'-',
+			A2(_elm_lang$core$List$filterMap, forKeys, config.options));
+		var isDisabled = A2(
+			_elm_lang$core$List$any,
+			F2(
+				function (x, y) {
+					return _elm_lang$core$Native_Utils.eq(x, y);
+				})(_mdgriffith$style_elements$Element_Input$Disabled),
+			config.options);
+		var forErrors = function (opt) {
+			var _p90 = opt;
+			if (_p90.ctor === 'ErrorOpt') {
+				return _elm_lang$core$Maybe$Just(_p90._0);
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		};
+		var errs = A2(_elm_lang$core$List$filterMap, forErrors, config.options);
+		var input = A4(
+			_mdgriffith$style_elements$Element_Input$radioHelper,
+			_mdgriffith$style_elements$Element_Input$Horizontal,
+			style,
+			attrs,
+			{
+				selection: _mdgriffith$style_elements$Element_Input$Single(
+					{selected: config.selected, onChange: config.onChange}),
+				choices: config.choices,
+				label: config.label,
+				disabled: isDisabled,
+				errors: errs,
+				key: _elm_lang$core$Native_Utils.eq(key, '') ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(key)
+			});
+		return A8(
+			_mdgriffith$style_elements$Element_Input$applyLabel,
+			_elm_lang$core$Maybe$Nothing,
+			_elm_lang$core$Maybe$Nothing,
+			{ctor: '[]'},
+			config.label,
+			errs,
+			isDisabled,
+			!isDisabled,
+			{
+				ctor: '::',
+				_0: input,
+				_1: {ctor: '[]'}
+			});
+	});
+var _mdgriffith$style_elements$Element_Input$MenuDown = F3(
+	function (a, b, c) {
+		return {ctor: 'MenuDown', _0: a, _1: b, _2: c};
+	});
+var _mdgriffith$style_elements$Element_Input$menu = _mdgriffith$style_elements$Element_Input$MenuDown;
+var _mdgriffith$style_elements$Element_Input$MenuUp = F3(
+	function (a, b, c) {
+		return {ctor: 'MenuUp', _0: a, _1: b, _2: c};
+	});
+var _mdgriffith$style_elements$Element_Input$menuAbove = _mdgriffith$style_elements$Element_Input$MenuUp;
+var _mdgriffith$style_elements$Element_Input$SelectMenu = function (a) {
+	return {ctor: 'SelectMenu', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$dropMenu = F2(
+	function (selected, onUpdate) {
+		return _mdgriffith$style_elements$Element_Input$SelectMenu(
+			{selected: selected, onUpdate: onUpdate, isOpen: false});
+	});
+var _mdgriffith$style_elements$Element_Input$Autocomplete = function (a) {
+	return {ctor: 'Autocomplete', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$autocomplete = F2(
+	function (selected, onUpdate) {
+		return _mdgriffith$style_elements$Element_Input$Autocomplete(
+			{query: '', selected: selected, focus: selected, onUpdate: onUpdate, isOpen: false});
+	});
+var _mdgriffith$style_elements$Element_Input$clear = function (select) {
+	var _p91 = select;
+	if (_p91.ctor === 'Autocomplete') {
+		return _mdgriffith$style_elements$Element_Input$Autocomplete(
+			{query: '', selected: _elm_lang$core$Maybe$Nothing, focus: _elm_lang$core$Maybe$Nothing, onUpdate: _p91._0.onUpdate, isOpen: false});
+	} else {
+		return _mdgriffith$style_elements$Element_Input$SelectMenu(
+			{selected: _elm_lang$core$Maybe$Nothing, onUpdate: _p91._0.onUpdate, isOpen: false});
+	}
+};
+var _mdgriffith$style_elements$Element_Input$updateSelection = F2(
+	function (msg, select) {
+		var _p92 = msg;
+		switch (_p92.ctor) {
+			case 'OpenMenu':
+				var _p93 = select;
+				if (_p93.ctor === 'Autocomplete') {
+					return _mdgriffith$style_elements$Element_Input$Autocomplete(
+						_elm_lang$core$Native_Utils.update(
+							_p93._0,
+							{isOpen: true}));
+				} else {
+					return _mdgriffith$style_elements$Element_Input$SelectMenu(
+						_elm_lang$core$Native_Utils.update(
+							_p93._0,
+							{isOpen: true}));
+				}
+			case 'CloseMenu':
+				var _p94 = select;
+				if (_p94.ctor === 'Autocomplete') {
+					return _mdgriffith$style_elements$Element_Input$Autocomplete(
+						_elm_lang$core$Native_Utils.update(
+							_p94._0,
+							{isOpen: false}));
+				} else {
+					return _mdgriffith$style_elements$Element_Input$SelectMenu(
+						_elm_lang$core$Native_Utils.update(
+							_p94._0,
+							{isOpen: false}));
+				}
+			case 'SetQuery':
+				var _p97 = _p92._0;
+				var _p95 = select;
+				if (_p95.ctor === 'Autocomplete') {
+					var _p96 = _p95._0;
+					return _mdgriffith$style_elements$Element_Input$Autocomplete(
+						_elm_lang$core$Native_Utils.update(
+							_p96,
+							{
+								query: _p97,
+								isOpen: true,
+								selected: _elm_lang$core$Native_Utils.eq(_p97, '') ? _p96.selected : _elm_lang$core$Maybe$Nothing
+							}));
+				} else {
+					return _mdgriffith$style_elements$Element_Input$SelectMenu(_p95._0);
+				}
+			case 'SetFocus':
+				var _p98 = select;
+				if (_p98.ctor === 'Autocomplete') {
+					return _mdgriffith$style_elements$Element_Input$Autocomplete(
+						_elm_lang$core$Native_Utils.update(
+							_p98._0,
+							{focus: _p92._0}));
+				} else {
+					return _mdgriffith$style_elements$Element_Input$SelectMenu(_p98._0);
+				}
+			case 'SelectValue':
+				var _p100 = _p92._0;
+				var _p99 = select;
+				if (_p99.ctor === 'Autocomplete') {
+					return _mdgriffith$style_elements$Element_Input$Autocomplete(
+						_elm_lang$core$Native_Utils.update(
+							_p99._0,
+							{selected: _p100, query: ''}));
+				} else {
+					return _mdgriffith$style_elements$Element_Input$SelectMenu(
+						_elm_lang$core$Native_Utils.update(
+							_p99._0,
+							{selected: _p100}));
+				}
+			case 'SelectFocused':
+				var _p101 = select;
+				if (_p101.ctor === 'Autocomplete') {
+					var _p102 = _p101._0;
+					return _mdgriffith$style_elements$Element_Input$Autocomplete(
+						_elm_lang$core$Native_Utils.update(
+							_p102,
+							{selected: _p102.focus, query: ''}));
+				} else {
+					return _mdgriffith$style_elements$Element_Input$SelectMenu(_p101._0);
+				}
+			case 'Clear':
+				var _p103 = select;
+				if (_p103.ctor === 'Autocomplete') {
+					return _mdgriffith$style_elements$Element_Input$Autocomplete(
+						_elm_lang$core$Native_Utils.update(
+							_p103._0,
+							{query: '', isOpen: true, selected: _elm_lang$core$Maybe$Nothing, focus: _elm_lang$core$Maybe$Nothing}));
+				} else {
+					return _mdgriffith$style_elements$Element_Input$SelectMenu(
+						_elm_lang$core$Native_Utils.update(
+							_p103._0,
+							{selected: _elm_lang$core$Maybe$Nothing}));
+				}
+			default:
+				return A3(_elm_lang$core$List$foldl, _mdgriffith$style_elements$Element_Input$updateSelection, select, _p92._0);
+		}
+	});
+var _mdgriffith$style_elements$Element_Input$Batch = function (a) {
+	return {ctor: 'Batch', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$Clear = {ctor: 'Clear'};
+var _mdgriffith$style_elements$Element_Input$SelectFocused = {ctor: 'SelectFocused'};
+var _mdgriffith$style_elements$Element_Input$SelectValue = function (a) {
+	return {ctor: 'SelectValue', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$SetFocus = function (a) {
+	return {ctor: 'SetFocus', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$SetQuery = function (a) {
+	return {ctor: 'SetQuery', _0: a};
+};
+var _mdgriffith$style_elements$Element_Input$CloseMenu = {ctor: 'CloseMenu'};
+var _mdgriffith$style_elements$Element_Input$OpenMenu = {ctor: 'OpenMenu'};
+var _mdgriffith$style_elements$Element_Input$selectMenu = F3(
+	function (style, attrs, input) {
+		var isDisabled = A2(
+			_elm_lang$core$List$any,
+			F2(
+				function (x, y) {
+					return _elm_lang$core$Native_Utils.eq(x, y);
+				})(_mdgriffith$style_elements$Element_Input$Disabled),
+			input.options);
+		var forErrors = function (opt) {
+			var _p104 = opt;
+			if (_p104.ctor === 'ErrorOpt') {
+				return _elm_lang$core$Maybe$Just(_p104._0);
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		};
+		var errors = A2(_elm_lang$core$List$filterMap, forErrors, input.options);
+		var forSpacing = function (attr) {
+			var _p105 = attr;
+			if (_p105.ctor === 'Spacing') {
+				return true;
+			} else {
+				return false;
+			}
+		};
+		var _p106 = A2(_elm_lang$core$List$partition, forSpacing, attrs);
+		var attrsWithSpacing = _p106._0;
+		var attrsWithoutSpacing = _p106._1;
+		var forPadding = function (attr) {
+			var _p107 = attr;
+			if (_p107.ctor === 'Padding') {
+				return true;
+			} else {
+				return false;
+			}
+		};
+		var parentPadding = A2(_elm_lang$core$List$filter, forPadding, attrs);
+		var renderOption = function (option) {
+			var _p108 = option;
+			if (_p108.ctor === 'Choice') {
+				var _p109 = _p108._0;
+				var isSelected = _elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Maybe$Just(_p109),
+					input.selected) ? A2(
+					_elm_lang$core$Basics_ops['++'],
+					{
+						ctor: '::',
+						_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-selected', 'true'),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$inlineStyle(
+								{
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'rgba(0,0,0,0.03)'},
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
+					},
+					parentPadding) : A2(
+					_elm_lang$core$Basics_ops['++'],
+					{
+						ctor: '::',
+						_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-selected', 'false'),
+						_1: {ctor: '[]'}
+					},
+					parentPadding);
+				var additional = isDisabled ? {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Internal_Model$Expand,
+					_1: {
+						ctor: '::',
+						_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'role', 'menuitemradio'),
+						_1: isSelected
+					}
+				} : {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Events$onClick(
+						input.onUpdate(
+							_mdgriffith$style_elements$Element_Input$Batch(
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Input$CloseMenu,
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Input$SelectValue(
+											_elm_lang$core$Maybe$Just(_p109)),
+										_1: {ctor: '[]'}
+									}
+								}))),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Internal_Model$Expand,
+						_1: {
+							ctor: '::',
+							_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'role', 'menuitemradio'),
+							_1: isSelected
+						}
+					}
+				};
+				return A2(_mdgriffith$style_elements$Element_Internal_Modify$addAttrList, additional, _p108._1);
+			} else {
+				var _p110 = _p108._0;
+				var viewState = _elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Maybe$Just(_p110),
+					input.selected) ? _mdgriffith$style_elements$Element_Input$Selected : _mdgriffith$style_elements$Element_Input$Idle;
+				var isSelected = _elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Maybe$Just(_p110),
+					input.selected) ? {
+					ctor: '::',
+					_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-selected', 'true'),
+					_1: parentPadding
+				} : {
+					ctor: '::',
+					_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-selected', 'false'),
+					_1: parentPadding
+				};
+				var additional = isDisabled ? {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Internal_Model$Expand,
+					_1: {
+						ctor: '::',
+						_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'role', 'menuitemradio'),
+						_1: isSelected
+					}
+				} : {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Events$onClick(
+						input.onUpdate(
+							_mdgriffith$style_elements$Element_Input$Batch(
+								{
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Input$CloseMenu,
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Input$SelectValue(
+											_elm_lang$core$Maybe$Just(_p110)),
+										_1: {ctor: '[]'}
+									}
+								}))),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Internal_Model$Expand,
+						_1: {
+							ctor: '::',
+							_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'role', 'menuitemradio'),
+							_1: isSelected
+						}
+					}
+				};
+				return A2(
+					_mdgriffith$style_elements$Element_Internal_Modify$addAttrList,
+					additional,
+					_p108._1(viewState));
+			}
+		};
+		var getSelectedLabel = F2(
+			function (selected, option) {
+				if (_elm_lang$core$Native_Utils.eq(
+					_mdgriffith$style_elements$Element_Input$getOptionValue(option),
+					selected)) {
+					var _p111 = option;
+					if (_p111.ctor === 'Choice') {
+						return _elm_lang$core$Maybe$Just(_p111._1);
+					} else {
+						return _elm_lang$core$Maybe$Just(
+							_p111._1(_mdgriffith$style_elements$Element_Input$SelectedInBox));
+					}
+				} else {
+					return _elm_lang$core$Maybe$Nothing;
+				}
+			});
+		var placeholderText = function () {
+			var _p112 = input.label;
+			if (_p112.ctor === 'PlaceHolder') {
+				return _mdgriffith$style_elements$Element$text(_p112._0);
+			} else {
+				return _mdgriffith$style_elements$Element$text(' - ');
+			}
+		}();
+		var _p113 = function () {
+			var _p114 = input.menu;
+			if (_p114.ctor === 'MenuUp') {
+				return {ctor: '_Tuple4', _0: true, _1: _p114._0, _2: _p114._1, _3: _p114._2};
+			} else {
+				return {ctor: '_Tuple4', _0: false, _1: _p114._0, _2: _p114._1, _3: _p114._2};
+			}
+		}();
+		var menuAbove = _p113._0;
+		var menuStyle = _p113._1;
+		var menuAttrs = _p113._2;
+		var choices = _p113._3;
+		var selectedText = function () {
+			var _p115 = input.selected;
+			if (_p115.ctor === 'Nothing') {
+				return placeholderText;
+			} else {
+				return A2(
+					_elm_lang$core$Maybe$withDefault,
+					placeholderText,
+					_elm_lang$core$List$head(
+						A2(
+							_elm_lang$core$List$filterMap,
+							getSelectedLabel(_p115._0),
+							choices)));
+			}
+		}();
+		var bar = _mdgriffith$style_elements$Element_Internal_Model$Layout(
+			{
+				node: 'div',
+				style: _elm_lang$core$Maybe$Just(style),
+				layout: A2(
+					_mdgriffith$style_elements$Style_Internal_Model$FlexLayout,
+					_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+					{ctor: '[]'}),
+				attrs: isDisabled ? {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$verticalCenter,
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$spread,
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+							_1: attrsWithoutSpacing
+						}
+					}
+				} : ((input.isOpen && (!_elm_lang$core$Native_Utils.eq(input.selected, _elm_lang$core$Maybe$Nothing))) ? {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Events$onClick(
+						input.onUpdate(_mdgriffith$style_elements$Element_Input$CloseMenu)),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Input$pointer,
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$verticalCenter,
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$spread,
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+									_1: attrsWithoutSpacing
+								}
+							}
+						}
+					}
+				} : (((!input.isOpen) && (!_elm_lang$core$Native_Utils.eq(input.selected, _elm_lang$core$Maybe$Nothing))) ? {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Events$onClick(
+						input.onUpdate(_mdgriffith$style_elements$Element_Input$OpenMenu)),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Input$pointer,
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$verticalCenter,
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$spread,
+								_1: {
+									ctor: '::',
+									_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+									_1: attrsWithoutSpacing
+								}
+							}
+						}
+					}
+				} : {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Input$pointer,
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$verticalCenter,
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Attributes$spread,
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+								_1: attrsWithoutSpacing
+							}
+						}
+					}
+				})),
+				children: _mdgriffith$style_elements$Element_Internal_Model$Normal(
+					{
+						ctor: '::',
+						_0: selectedText,
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Input$arrows,
+							_1: {ctor: '[]'}
+						}
+					}),
+				absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+			});
+		var cursor = A3(
+			_elm_lang$core$List$foldl,
+			F2(
+				function (option, cache) {
+					var last = _elm_lang$core$Maybe$Just(
+						_mdgriffith$style_elements$Element_Input$getOptionValue(option));
+					var first = function () {
+						var _p116 = cache.first;
+						if (_p116.ctor === 'Nothing') {
+							return _elm_lang$core$Maybe$Just(
+								_mdgriffith$style_elements$Element_Input$getOptionValue(option));
+						} else {
+							return cache.first;
+						}
+					}();
+					var currentIsSelected = function () {
+						var _p117 = cache.selected;
+						if (_p117.ctor === 'Nothing') {
+							return false;
+						} else {
+							return _elm_lang$core$Native_Utils.eq(
+								_mdgriffith$style_elements$Element_Input$getOptionValue(option),
+								_p117._0);
+						}
+					}();
+					var found = (!cache.found) ? currentIsSelected : cache.found;
+					var prev = (currentIsSelected && _elm_lang$core$Native_Utils.eq(cache.prev, _elm_lang$core$Maybe$Nothing)) ? cache.last : cache.prev;
+					var next = (cache.found && _elm_lang$core$Native_Utils.eq(cache.next, _elm_lang$core$Maybe$Nothing)) ? _elm_lang$core$Maybe$Just(
+						_mdgriffith$style_elements$Element_Input$getOptionValue(option)) : cache.next;
+					return _elm_lang$core$Native_Utils.update(
+						cache,
+						{next: next, found: found, prev: prev, first: first, last: last});
+				}),
+			{selected: input.selected, found: false, prev: _elm_lang$core$Maybe$Nothing, next: _elm_lang$core$Maybe$Nothing, first: _elm_lang$core$Maybe$Nothing, last: _elm_lang$core$Maybe$Nothing},
+			choices);
+		var _p118 = _elm_lang$core$Native_Utils.eq(cursor.found, false) ? {next: cursor.first, prev: cursor.first} : ((_elm_lang$core$Native_Utils.eq(cursor.next, _elm_lang$core$Maybe$Nothing) && (!_elm_lang$core$Native_Utils.eq(cursor.prev, _elm_lang$core$Maybe$Nothing))) ? {next: cursor.first, prev: cursor.prev} : ((_elm_lang$core$Native_Utils.eq(cursor.prev, _elm_lang$core$Maybe$Nothing) && (!_elm_lang$core$Native_Utils.eq(cursor.next, _elm_lang$core$Maybe$Nothing))) ? {next: cursor.next, prev: cursor.last} : {next: cursor.next, prev: cursor.prev}));
+		var next = _p118.next;
+		var prev = _p118.prev;
+		var fullElement = A2(
+			menuAbove ? _mdgriffith$style_elements$Element$above : _mdgriffith$style_elements$Element$below,
+			(input.isOpen && (!isDisabled)) ? {
+				ctor: '::',
+				_0: A3(
+					_mdgriffith$style_elements$Element$column,
+					menuStyle,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$inlineStyle(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'z-index', _1: '20'},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'white'},
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Input$pointer,
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+								_1: menuAttrs
+							}
+						}
+					},
+					A2(_elm_lang$core$List$map, renderOption, choices)),
+				_1: {ctor: '[]'}
+			} : {ctor: '[]'},
+			_mdgriffith$style_elements$Element_Internal_Model$Element(
+				{
+					node: 'div',
+					style: _elm_lang$core$Maybe$Nothing,
+					attrs: A2(
+						_elm_lang$core$List$filterMap,
+						_elm_lang$core$Basics$identity,
+						{
+							ctor: '::',
+							_0: _elm_lang$core$Maybe$Just(
+								_mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill)),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$core$Maybe$Just(
+									A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'role', 'menu')),
+								_1: {
+									ctor: '::',
+									_0: (!isDisabled) ? _elm_lang$core$Maybe$Just(
+										_mdgriffith$style_elements$Element_Input$tabindex(0)) : _elm_lang$core$Maybe$Nothing,
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$core$Maybe$Just(
+											_mdgriffith$style_elements$Element_Attributes$inlineStyle(
+												{
+													ctor: '::',
+													_0: {ctor: '_Tuple2', _0: 'z-index', _1: '20'},
+													_1: {ctor: '[]'}
+												})),
+										_1: {
+											ctor: '::',
+											_0: isDisabled ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
+												_mdgriffith$style_elements$Element_Attributes$toAttr(
+													_mdgriffith$style_elements$Element_Input$onFocusOut(
+														input.onUpdate(_mdgriffith$style_elements$Element_Input$CloseMenu)))),
+											_1: {
+												ctor: '::',
+												_0: isDisabled ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
+													_mdgriffith$style_elements$Element_Attributes$toAttr(
+														_mdgriffith$style_elements$Element_Input$onFocusIn(
+															input.onUpdate(_mdgriffith$style_elements$Element_Input$OpenMenu)))),
+												_1: {
+													ctor: '::',
+													_0: isDisabled ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
+														_mdgriffith$style_elements$Element_Input$onKeyLookup(
+															function (key) {
+																return _elm_lang$core$Native_Utils.eq(key, _mdgriffith$style_elements$Element_Input$enter) ? _elm_lang$core$Maybe$Just(
+																	input.onUpdate(
+																		input.isOpen ? _mdgriffith$style_elements$Element_Input$CloseMenu : _mdgriffith$style_elements$Element_Input$OpenMenu)) : ((_elm_lang$core$Native_Utils.eq(key, _mdgriffith$style_elements$Element_Input$downArrow) && (!input.isOpen)) ? _elm_lang$core$Maybe$Just(
+																	input.onUpdate(_mdgriffith$style_elements$Element_Input$OpenMenu)) : ((_elm_lang$core$Native_Utils.eq(key, _mdgriffith$style_elements$Element_Input$downArrow) && input.isOpen) ? A2(
+																	_elm_lang$core$Maybe$map,
+																	function (x) {
+																		return input.onUpdate(
+																			_mdgriffith$style_elements$Element_Input$SelectValue(
+																				_elm_lang$core$Maybe$Just(x)));
+																	},
+																	next) : ((_elm_lang$core$Native_Utils.eq(key, _mdgriffith$style_elements$Element_Input$upArrow) && (!input.isOpen)) ? _elm_lang$core$Maybe$Just(
+																	input.onUpdate(_mdgriffith$style_elements$Element_Input$OpenMenu)) : ((_elm_lang$core$Native_Utils.eq(key, _mdgriffith$style_elements$Element_Input$upArrow) && input.isOpen) ? A2(
+																	_elm_lang$core$Maybe$map,
+																	function (x) {
+																		return input.onUpdate(
+																			_mdgriffith$style_elements$Element_Input$SelectValue(
+																				_elm_lang$core$Maybe$Just(x)));
+																	},
+																	prev) : _elm_lang$core$Maybe$Nothing))));
+															})),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									}
+								}
+							}
+						}),
+					child: bar,
+					absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+				}));
+		return A8(
+			_mdgriffith$style_elements$Element_Input$applyLabel,
+			_elm_lang$core$Maybe$Nothing,
+			_elm_lang$core$Maybe$Nothing,
+			attrsWithSpacing,
+			input.label,
+			errors,
+			isDisabled,
+			!isDisabled,
+			{
+				ctor: '::',
+				_0: fullElement,
+				_1: {ctor: '[]'}
+			});
+	});
+var _mdgriffith$style_elements$Element_Input$searchSelect = F3(
+	function (style, attrs, input) {
+		var choiceText = function (choice) {
+			var _p119 = choice;
+			if (_p119.ctor === 'Choice') {
+				return _mdgriffith$style_elements$Element_Internal_Modify$getTextList(_p119._1);
+			} else {
+				return _mdgriffith$style_elements$Element_Internal_Modify$getTextList(
+					_p119._1(_mdgriffith$style_elements$Element_Input$Idle));
+			}
+		};
+		var matchesQuery = F2(
+			function (query, opt) {
+				return _elm_lang$core$Native_Utils.eq(query, '') ? true : A2(
+					_elm_lang$core$List$any,
+					function (str) {
+						return A2(
+							_elm_lang$core$String$startsWith,
+							function (_p120) {
+								return _elm_lang$core$String$toLower(
+									_elm_lang$core$String$trimLeft(_p120));
+							}(query),
+							_elm_lang$core$String$toLower(
+								_elm_lang$core$String$trimLeft(str)));
+					},
+					choiceText(opt));
+			});
+		var forSpacing = function (attr) {
+			var _p121 = attr;
+			if (_p121.ctor === 'Spacing') {
+				return _elm_lang$core$Maybe$Just(
+					{ctor: '_Tuple2', _0: _p121._0, _1: _p121._1});
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		};
+		var _p122 = A2(
+			_elm_lang$core$Maybe$withDefault,
+			{ctor: '_Tuple2', _0: 0, _1: 0},
+			_elm_lang$core$List$head(
+				A2(_elm_lang$core$List$filterMap, forSpacing, attrs)));
+		var xSpacing = _p122._0;
+		var ySpacing = _p122._1;
+		var forPadding = function (attr) {
+			var _p123 = attr;
+			if (_p123.ctor === 'Padding') {
+				return _elm_lang$core$Maybe$Just(
+					{ctor: '_Tuple4', _0: _p123._0, _1: _p123._1, _2: _p123._2, _3: _p123._3});
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		};
+		var _p124 = A2(
+			_elm_lang$core$Maybe$withDefault,
+			{ctor: '_Tuple4', _0: 0, _1: 0, _2: 0, _3: 0},
+			A2(
+				_elm_lang$core$Maybe$map,
+				A2(
+					_elm_lang$core$Basics$flip,
+					_mdgriffith$style_elements$Element_Input$defaultPadding,
+					{ctor: '_Tuple4', _0: 0, _1: 0, _2: 0, _3: 0}),
+				_elm_lang$core$List$head(
+					A2(_elm_lang$core$List$filterMap, forPadding, attrs))));
+		var ppTop = _p124._0;
+		var ppRight = _p124._1;
+		var ppBottom = _p124._2;
+		var ppLeft = _p124._3;
+		var parentPadding = A4(
+			_mdgriffith$style_elements$Element_Internal_Model$Padding,
+			_elm_lang$core$Maybe$Just(ppTop),
+			_elm_lang$core$Maybe$Just(ppRight),
+			_elm_lang$core$Maybe$Just(ppBottom),
+			_elm_lang$core$Maybe$Just(ppLeft));
+		var onlySpacing = function (attr) {
+			var _p125 = attr;
+			if (_p125.ctor === 'Spacing') {
+				return true;
+			} else {
+				return false;
+			}
+		};
+		var _p126 = A2(_elm_lang$core$List$partition, onlySpacing, attrs);
+		var attrsWithSpacing = _p126._0;
+		var attrsWithoutSpacing = _p126._1;
+		var placeholderText = function () {
+			var _p127 = input.selected;
+			if (_p127.ctor === 'Nothing') {
+				var _p128 = input.label;
+				if (_p128.ctor === 'PlaceHolder') {
+					return _p128._0;
+				} else {
+					return 'Search...';
+				}
+			} else {
+				return '';
+			}
+		}();
+		var _p129 = function () {
+			var _p130 = input.menu;
+			if (_p130.ctor === 'MenuUp') {
+				return {ctor: '_Tuple4', _0: true, _1: _p130._0, _2: _p130._1, _3: _p130._2};
+			} else {
+				return {ctor: '_Tuple4', _0: false, _1: _p130._0, _2: _p130._1, _3: _p130._2};
+			}
+		}();
+		var menuAbove = _p129._0;
+		var menuStyle = _p129._1;
+		var menuAttrs = _p129._2;
+		var choices = _p129._3;
+		var cursor = A3(
+			_elm_lang$core$List$foldl,
+			F2(
+				function (option, cache) {
+					var last = _elm_lang$core$Maybe$Just(
+						_mdgriffith$style_elements$Element_Input$getOptionValue(option));
+					var first = function () {
+						var _p131 = cache.first;
+						if (_p131.ctor === 'Nothing') {
+							return _elm_lang$core$Maybe$Just(
+								_mdgriffith$style_elements$Element_Input$getOptionValue(option));
+						} else {
+							return cache.first;
+						}
+					}();
+					var currentIsSelected = function () {
+						var _p132 = cache.selected;
+						if (_p132.ctor === 'Nothing') {
+							return false;
+						} else {
+							return _elm_lang$core$Native_Utils.eq(
+								_mdgriffith$style_elements$Element_Input$getOptionValue(option),
+								_p132._0);
+						}
+					}();
+					var found = (!cache.found) ? currentIsSelected : cache.found;
+					var prev = (currentIsSelected && _elm_lang$core$Native_Utils.eq(cache.prev, _elm_lang$core$Maybe$Nothing)) ? cache.last : cache.prev;
+					var next = (cache.found && _elm_lang$core$Native_Utils.eq(cache.next, _elm_lang$core$Maybe$Nothing)) ? _elm_lang$core$Maybe$Just(
+						_mdgriffith$style_elements$Element_Input$getOptionValue(option)) : cache.next;
+					return _elm_lang$core$Native_Utils.update(
+						cache,
+						{next: next, found: found, prev: prev, first: first, last: last});
+				}),
+			{selected: input.focus, found: false, prev: _elm_lang$core$Maybe$Nothing, next: _elm_lang$core$Maybe$Nothing, first: _elm_lang$core$Maybe$Nothing, last: _elm_lang$core$Maybe$Nothing},
+			A2(
+				_elm_lang$core$List$filter,
+				matchesQuery(input.query),
+				choices));
+		var _p133 = _elm_lang$core$Native_Utils.eq(cursor.found, false) ? {next: cursor.first, prev: cursor.first} : ((_elm_lang$core$Native_Utils.eq(cursor.next, _elm_lang$core$Maybe$Nothing) && (!_elm_lang$core$Native_Utils.eq(cursor.prev, _elm_lang$core$Maybe$Nothing))) ? {next: cursor.first, prev: cursor.prev} : ((_elm_lang$core$Native_Utils.eq(cursor.prev, _elm_lang$core$Maybe$Nothing) && (!_elm_lang$core$Native_Utils.eq(cursor.next, _elm_lang$core$Maybe$Nothing))) ? {next: cursor.next, prev: cursor.last} : {next: cursor.next, prev: cursor.prev}));
+		var next = _p133.next;
+		var prev = _p133.prev;
+		var getFocus = function (query) {
+			return A2(
+				_elm_lang$core$Maybe$map,
+				_mdgriffith$style_elements$Element_Input$getOptionValue,
+				_elm_lang$core$List$head(
+					A2(
+						_elm_lang$core$List$filter,
+						matchesQuery(query),
+						choices)));
+		};
+		var isDisabled = A2(
+			_elm_lang$core$List$any,
+			F2(
+				function (x, y) {
+					return _elm_lang$core$Native_Utils.eq(x, y);
+				})(_mdgriffith$style_elements$Element_Input$Disabled),
+			input.options);
+		var renderOption = function (option) {
+			var _p134 = option;
+			if (_p134.ctor === 'Choice') {
+				var _p135 = _p134._0;
+				var isSelected = _elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Maybe$Just(_p135),
+					input.selected) ? {
+					ctor: '::',
+					_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-selected', 'true'),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$inlineStyle(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'rgba(0,0,0,0.05)'},
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: parentPadding,
+							_1: {ctor: '[]'}
+						}
+					}
+				} : (_elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Maybe$Just(_p135),
+					input.focus) ? {
+					ctor: '::',
+					_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-selected', 'false'),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$inlineStyle(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'rgba(0,0,0,0.03)'},
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: parentPadding,
+							_1: {ctor: '[]'}
+						}
+					}
+				} : {
+					ctor: '::',
+					_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-selected', 'false'),
+					_1: {
+						ctor: '::',
+						_0: parentPadding,
+						_1: {ctor: '[]'}
+					}
+				});
+				var additional = isDisabled ? {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Internal_Model$Expand,
+					_1: {
+						ctor: '::',
+						_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'role', 'menuitemradio'),
+						_1: isSelected
+					}
+				} : {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Events$onMouseEnter(
+						input.onUpdate(
+							_mdgriffith$style_elements$Element_Input$SetFocus(
+								_elm_lang$core$Maybe$Just(_p135)))),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Events$onClick(
+							input.onUpdate(
+								_mdgriffith$style_elements$Element_Input$Batch(
+									{
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Input$SetFocus(
+											_elm_lang$core$Maybe$Just(_p135)),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Element_Input$SelectFocused,
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Element_Input$CloseMenu,
+												_1: {ctor: '[]'}
+											}
+										}
+									}))),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Internal_Model$Expand,
+							_1: {
+								ctor: '::',
+								_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'role', 'menuitemradio'),
+								_1: isSelected
+							}
+						}
+					}
+				};
+				return A2(_mdgriffith$style_elements$Element_Internal_Modify$addAttrList, additional, _p134._1);
+			} else {
+				var _p136 = _p134._0;
+				var selectedState = _elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Maybe$Just(_p136),
+					input.selected) ? _mdgriffith$style_elements$Element_Input$Selected : (_elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Maybe$Just(_p136),
+					input.focus) ? _mdgriffith$style_elements$Element_Input$Focused : _mdgriffith$style_elements$Element_Input$Idle);
+				var isSelected = _elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Maybe$Just(_p136),
+					input.selected) ? {
+					ctor: '::',
+					_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-selected', 'true'),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$inlineStyle(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'rgba(0,0,0,0.05)'},
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: parentPadding,
+							_1: {ctor: '[]'}
+						}
+					}
+				} : (_elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Maybe$Just(_p136),
+					input.focus) ? {
+					ctor: '::',
+					_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-selected', 'false'),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$inlineStyle(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'rgba(0,0,0,0.03)'},
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: parentPadding,
+							_1: {ctor: '[]'}
+						}
+					}
+				} : {
+					ctor: '::',
+					_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'aria-selected', 'false'),
+					_1: {
+						ctor: '::',
+						_0: parentPadding,
+						_1: {ctor: '[]'}
+					}
+				});
+				var additional = isDisabled ? {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Internal_Model$Expand,
+					_1: {
+						ctor: '::',
+						_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'role', 'menuitemradio'),
+						_1: isSelected
+					}
+				} : {
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Events$onMouseEnter(
+						input.onUpdate(
+							_mdgriffith$style_elements$Element_Input$SetFocus(
+								_elm_lang$core$Maybe$Just(_p136)))),
+					_1: {
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Events$onClick(
+							input.onUpdate(
+								_mdgriffith$style_elements$Element_Input$Batch(
+									{
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Input$SetFocus(
+											_elm_lang$core$Maybe$Just(_p136)),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Element_Input$SelectFocused,
+											_1: {
+												ctor: '::',
+												_0: _mdgriffith$style_elements$Element_Input$CloseMenu,
+												_1: {ctor: '[]'}
+											}
+										}
+									}))),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Internal_Model$Expand,
+							_1: {
+								ctor: '::',
+								_0: A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'role', 'menuitemradio'),
+								_1: isSelected
+							}
+						}
+					}
+				};
+				return A2(
+					_mdgriffith$style_elements$Element_Internal_Modify$addAttrList,
+					additional,
+					_p134._1(selectedState));
+			}
+		};
+		var matches = A2(
+			_elm_lang$core$List$map,
+			renderOption,
+			A2(
+				_elm_lang$core$List$take,
+				input.max,
+				A2(
+					_elm_lang$core$List$filter,
+					matchesQuery(input.query),
+					choices)));
+		var fullElement = A2(
+			menuAbove ? _mdgriffith$style_elements$Element$above : _mdgriffith$style_elements$Element$below,
+			(input.isOpen && ((!_elm_lang$core$List$isEmpty(matches)) && ((!isDisabled) && _elm_lang$core$Native_Utils.eq(input.selected, _elm_lang$core$Maybe$Nothing)))) ? {
+				ctor: '::',
+				_0: A3(
+					_mdgriffith$style_elements$Element$column,
+					menuStyle,
+					{
+						ctor: '::',
+						_0: _mdgriffith$style_elements$Element_Attributes$inlineStyle(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'z-index', _1: '20'},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'white'},
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {
+							ctor: '::',
+							_0: _mdgriffith$style_elements$Element_Input$pointer,
+							_1: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill),
+								_1: menuAttrs
+							}
+						}
+					},
+					matches),
+				_1: {ctor: '[]'}
+			} : {ctor: '[]'},
+			_mdgriffith$style_elements$Element_Internal_Model$Element(
+				{
+					node: 'div',
+					style: _elm_lang$core$Maybe$Nothing,
+					attrs: A2(
+						_elm_lang$core$List$filterMap,
+						_elm_lang$core$Basics$identity,
+						{
+							ctor: '::',
+							_0: _elm_lang$core$Maybe$Just(
+								_mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill)),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$core$Maybe$Just(
+									_mdgriffith$style_elements$Element_Attributes$inlineStyle(
+										{
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'z-index', _1: '20'},
+											_1: {ctor: '[]'}
+										})),
+								_1: {
+									ctor: '::',
+									_0: isDisabled ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
+										_mdgriffith$style_elements$Element_Input$onKeyLookup(
+											function (key) {
+												return ((_elm_lang$core$Native_Utils.eq(key, _mdgriffith$style_elements$Element_Input$delete) || _elm_lang$core$Native_Utils.eq(key, _mdgriffith$style_elements$Element_Input$backspace)) && (!_elm_lang$core$Native_Utils.eq(input.selected, _elm_lang$core$Maybe$Nothing))) ? _elm_lang$core$Maybe$Just(
+													input.onUpdate(_mdgriffith$style_elements$Element_Input$Clear)) : (_elm_lang$core$Native_Utils.eq(key, _mdgriffith$style_elements$Element_Input$tab) ? _elm_lang$core$Maybe$Just(
+													input.onUpdate(_mdgriffith$style_elements$Element_Input$SelectFocused)) : (_elm_lang$core$Native_Utils.eq(key, _mdgriffith$style_elements$Element_Input$enter) ? (input.isOpen ? _elm_lang$core$Maybe$Just(
+													input.onUpdate(
+														_mdgriffith$style_elements$Element_Input$Batch(
+															{
+																ctor: '::',
+																_0: _mdgriffith$style_elements$Element_Input$CloseMenu,
+																_1: {
+																	ctor: '::',
+																	_0: _mdgriffith$style_elements$Element_Input$SelectFocused,
+																	_1: {ctor: '[]'}
+																}
+															}))) : _elm_lang$core$Maybe$Just(
+													input.onUpdate(_mdgriffith$style_elements$Element_Input$OpenMenu))) : ((_elm_lang$core$Native_Utils.eq(key, _mdgriffith$style_elements$Element_Input$downArrow) && (!input.isOpen)) ? _elm_lang$core$Maybe$Just(
+													input.onUpdate(_mdgriffith$style_elements$Element_Input$OpenMenu)) : ((_elm_lang$core$Native_Utils.eq(key, _mdgriffith$style_elements$Element_Input$downArrow) && input.isOpen) ? A2(
+													_elm_lang$core$Maybe$map,
+													function (_p137) {
+														return input.onUpdate(
+															_mdgriffith$style_elements$Element_Input$SetFocus(
+																_elm_lang$core$Maybe$Just(_p137)));
+													},
+													next) : ((_elm_lang$core$Native_Utils.eq(key, _mdgriffith$style_elements$Element_Input$upArrow) && (!input.isOpen)) ? _elm_lang$core$Maybe$Just(
+													input.onUpdate(_mdgriffith$style_elements$Element_Input$OpenMenu)) : ((_elm_lang$core$Native_Utils.eq(key, _mdgriffith$style_elements$Element_Input$upArrow) && input.isOpen) ? A2(
+													_elm_lang$core$Maybe$map,
+													function (_p138) {
+														return input.onUpdate(
+															_mdgriffith$style_elements$Element_Input$SetFocus(
+																_elm_lang$core$Maybe$Just(_p138)));
+													},
+													prev) : _elm_lang$core$Maybe$Nothing))))));
+											})),
+									_1: {ctor: '[]'}
+								}
+							}
+						}),
+					child: _mdgriffith$style_elements$Element_Internal_Model$Layout(
+						{
+							node: 'div',
+							style: _elm_lang$core$Maybe$Nothing,
+							layout: A2(
+								_mdgriffith$style_elements$Style_Internal_Model$FlexLayout,
+								_mdgriffith$style_elements$Style_Internal_Model$GoRight,
+								{ctor: '[]'}),
+							attrs: {
+								ctor: '::',
+								_0: _mdgriffith$style_elements$Element_Attributes$inlineStyle(
+									{
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'cursor', _1: 'text'},
+										_1: {ctor: '[]'}
+									}),
+								_1: attrsWithoutSpacing
+							},
+							children: _mdgriffith$style_elements$Element_Internal_Model$Normal(
+								{
+									ctor: '::',
+									_0: function () {
+										var _p139 = input.selected;
+										if (_p139.ctor === 'Nothing') {
+											return _mdgriffith$style_elements$Element$text('');
+										} else {
+											return A2(
+												_elm_lang$core$Maybe$withDefault,
+												_mdgriffith$style_elements$Element$text(''),
+												_elm_lang$core$List$head(
+													A2(
+														_elm_lang$core$List$map,
+														function (opt) {
+															var _p140 = opt;
+															if (_p140.ctor === 'Choice') {
+																return _p140._1;
+															} else {
+																return _p140._1(_mdgriffith$style_elements$Element_Input$SelectedInBox);
+															}
+														},
+														A2(
+															_elm_lang$core$List$filter,
+															function (opt) {
+																return _elm_lang$core$Native_Utils.eq(
+																	_p139._0,
+																	_mdgriffith$style_elements$Element_Input$getOptionValue(opt));
+															},
+															choices))));
+										}
+									}(),
+									_1: {
+										ctor: '::',
+										_0: _mdgriffith$style_elements$Element_Internal_Model$Element(
+											{
+												node: 'input',
+												style: _elm_lang$core$Maybe$Nothing,
+												attrs: A2(
+													_elm_lang$core$List$filterMap,
+													_elm_lang$core$Basics$identity,
+													{
+														ctor: '::',
+														_0: _elm_lang$core$Maybe$Just(
+															_mdgriffith$style_elements$Element_Attributes$toAttr(
+																_elm_lang$html$Html_Attributes$placeholder(placeholderText))),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$core$Maybe$Just(
+																_mdgriffith$style_elements$Element_Attributes$width(_mdgriffith$style_elements$Element_Attributes$fill)),
+															_1: {
+																ctor: '::',
+																_0: isDisabled ? _elm_lang$core$Maybe$Just(
+																	_mdgriffith$style_elements$Element_Input$disabledAttr(true)) : _elm_lang$core$Maybe$Nothing,
+																_1: {
+																	ctor: '::',
+																	_0: isDisabled ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
+																		_mdgriffith$style_elements$Element_Attributes$toAttr(
+																			_mdgriffith$style_elements$Element_Input$onFocusOut(
+																				input.onUpdate(
+																					_mdgriffith$style_elements$Element_Input$Batch(
+																						{
+																							ctor: '::',
+																							_0: _mdgriffith$style_elements$Element_Input$SelectFocused,
+																							_1: {
+																								ctor: '::',
+																								_0: _mdgriffith$style_elements$Element_Input$CloseMenu,
+																								_1: {ctor: '[]'}
+																							}
+																						}))))),
+																	_1: {
+																		ctor: '::',
+																		_0: isDisabled ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
+																			_mdgriffith$style_elements$Element_Attributes$toAttr(
+																				_mdgriffith$style_elements$Element_Input$onFocusIn(
+																					input.onUpdate(_mdgriffith$style_elements$Element_Input$OpenMenu)))),
+																		_1: {
+																			ctor: '::',
+																			_0: _elm_lang$core$Maybe$Just(
+																				A2(_mdgriffith$style_elements$Element_Attributes$attribute, 'role', 'menu')),
+																			_1: {
+																				ctor: '::',
+																				_0: _elm_lang$core$Maybe$Just(
+																					_mdgriffith$style_elements$Element_Input$type_('text')),
+																				_1: {
+																					ctor: '::',
+																					_0: _elm_lang$core$Maybe$Just(
+																						_mdgriffith$style_elements$Element_Attributes$toAttr(
+																							_elm_lang$html$Html_Attributes$class('focus-override'))),
+																					_1: {
+																						ctor: '::',
+																						_0: isDisabled ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(
+																							_mdgriffith$style_elements$Element_Events$onInput(
+																								function (q) {
+																									return input.onUpdate(
+																										_mdgriffith$style_elements$Element_Input$Batch(
+																											{
+																												ctor: '::',
+																												_0: _mdgriffith$style_elements$Element_Input$SetQuery(q),
+																												_1: {
+																													ctor: '::',
+																													_0: _mdgriffith$style_elements$Element_Input$SetFocus(
+																														getFocus(q)),
+																													_1: {ctor: '[]'}
+																												}
+																											}));
+																								})),
+																						_1: {
+																							ctor: '::',
+																							_0: _elm_lang$core$Maybe$Just(
+																								_mdgriffith$style_elements$Element_Input$valueAttr(input.query)),
+																							_1: {ctor: '[]'}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}),
+												child: _mdgriffith$style_elements$Element_Internal_Model$Empty,
+												absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+											}),
+										_1: {
+											ctor: '::',
+											_0: _mdgriffith$style_elements$Element_Internal_Model$Element(
+												{
+													node: 'div',
+													style: _elm_lang$core$Maybe$Just(style),
+													attrs: {
+														ctor: '::',
+														_0: _mdgriffith$style_elements$Element_Attributes$width(
+															A2(_mdgriffith$style_elements$Style_Internal_Model$Calc, 100, 0)),
+														_1: {
+															ctor: '::',
+															_0: _mdgriffith$style_elements$Element_Attributes$toAttr(
+																_elm_lang$html$Html_Attributes$class('alt-icon')),
+															_1: {
+																ctor: '::',
+																_0: _mdgriffith$style_elements$Element_Attributes$inlineStyle(
+																	{
+																		ctor: '::',
+																		_0: {ctor: '_Tuple2', _0: 'height', _1: '100%'},
+																		_1: {
+																			ctor: '::',
+																			_0: {ctor: '_Tuple2', _0: 'position', _1: 'absolute'},
+																			_1: {
+																				ctor: '::',
+																				_0: {ctor: '_Tuple2', _0: 'top', _1: '0'},
+																				_1: {
+																					ctor: '::',
+																					_0: {ctor: '_Tuple2', _0: 'left', _1: '0'},
+																					_1: {ctor: '[]'}
+																				}
+																			}
+																		}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														}
+													},
+													child: _mdgriffith$style_elements$Element_Internal_Model$Empty,
+													absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+												}),
+											_1: {ctor: '[]'}
+										}
+									}
+								}),
+							absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+						}),
+					absolutelyPositioned: _elm_lang$core$Maybe$Nothing
+				}));
+		var forErrors = function (opt) {
+			var _p141 = opt;
+			if (_p141.ctor === 'ErrorOpt') {
+				return _elm_lang$core$Maybe$Just(_p141._0);
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		};
+		var errors = A2(_elm_lang$core$List$filterMap, forErrors, input.options);
+		return A8(
+			_mdgriffith$style_elements$Element_Input$applyLabel,
+			_elm_lang$core$Maybe$Nothing,
+			_elm_lang$core$Maybe$Nothing,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				{
+					ctor: '::',
+					_0: _mdgriffith$style_elements$Element_Attributes$inlineStyle(
+						{
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'cursor', _1: 'auto'},
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				},
+				attrsWithSpacing),
+			input.label,
+			errors,
+			isDisabled,
+			false,
+			{
+				ctor: '::',
+				_0: fullElement,
+				_1: {ctor: '[]'}
+			});
+	});
+var _mdgriffith$style_elements$Element_Input$select = F3(
+	function (style, attrs, input) {
+		var _p142 = input.$with;
+		if (_p142.ctor === 'Autocomplete') {
+			var _p143 = _p142._0;
+			return A3(
+				_mdgriffith$style_elements$Element_Input$searchSelect,
+				style,
+				attrs,
+				{max: input.max, menu: input.menu, label: input.label, options: input.options, onUpdate: _p143.onUpdate, isOpen: _p143.isOpen, selected: _p143.selected, query: _p143.query, focus: _p143.focus});
+		} else {
+			var _p144 = _p142._0;
+			return A3(
+				_mdgriffith$style_elements$Element_Input$selectMenu,
+				style,
+				attrs,
+				{max: input.max, menu: input.menu, label: input.label, options: input.options, onUpdate: _p144.onUpdate, isOpen: _p144.isOpen, selected: _p144.selected});
+		}
+	});

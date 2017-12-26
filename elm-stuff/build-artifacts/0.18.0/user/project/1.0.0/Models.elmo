@@ -1,0 +1,11 @@
+var _user$project$Models$User = function (a) {
+	return {name: a};
+};
+var _user$project$Models$PhoneNumber = F2(
+	function (a, b) {
+		return {number: a, user: b};
+	});
+var _user$project$Models$Model = F3(
+	function (a, b, c) {
+		return {phoneNumbers: a, inputName: b, inputNumber: c};
+	});
